@@ -1,15 +1,9 @@
 "use strict";
 
-/*
- * Created with @iobroker/create-adapter v2.6.5
- */
-
-// The adapter-core module gives you access to the core ioBroker functions
-// you need to create an adapter
 const utils = require("@iobroker/adapter-core");
 
-// Load your modules here, e.g.:
-// const fs = require("fs");
+const adapterName = require('./package.json').name.split('.').pop();
+
 
 class Dnscope extends utils.Adapter {
 
@@ -19,7 +13,7 @@ class Dnscope extends utils.Adapter {
 	constructor(options) {
 		super({
 			...options,
-			name: "dnscope",
+			name: adapterName,
 		});
 		this.on("ready", this.onReady.bind(this));
 		this.on("stateChange", this.onStateChange.bind(this));
@@ -28,24 +22,13 @@ class Dnscope extends utils.Adapter {
 		this.on("unload", this.onUnload.bind(this));
 	}
 
-	/**
-	 * Is called when databases are connected and adapter received configuration.
-	 */
 	async onReady() {
-		// Initialize your adapter here
-
-		// The adapters config (in the instance object everything under the attribute "native") is accessible via
 		// this.config:
 		this.log.info(`config dyndnsServive: ${  this.config.dyndnsServive}`);
 		this.log.info(`config ipv4: ${  this.config.ipv4}`);
 		this.log.info(`config ipv6: ${  this.config.ipv6}`);
 		this.log.info(`config onlyChanges: ${  this.config.onlyChanges}`);
 
-		/*
-		For every state in the system there has to be also an object of type state
-		Here a simple template for a boolean variable named "testVariable"
-		Because every adapter instance uses its own unique namespace variable names can't collide with other adapters variables
-		*/
 		await this.setObjectNotExistsAsync("testVariable", {
 			type: "state",
 			common: {
@@ -58,26 +41,10 @@ class Dnscope extends utils.Adapter {
 			native: {},
 		});
 
-		// In order to get state updates, you need to subscribe to them. The following line adds a subscription for our variable we have created above.
 		this.subscribeStates("testVariable");
-		// You can also add a subscription for multiple states. The following line watches all states starting with "lights."
-		// this.subscribeStates("lights.*");
-		// Or, if you really must, you can also watch all states. Don't do this if you don't need to. Otherwise this will cause a lot of unnecessary load on the system:
-		// this.subscribeStates("*");
 
-		/*
-			setState examples
-			you will notice that each setState will cause the stateChange event to fire (because of above subscribeStates cmd)
-		*/
-		// the variable testVariable is set to true as command (ack=false)
-		await this.setStateAsync("testVariable", true);
+		await this.setState("testVariable", true);
 
-		// same thing, but the value is flagged "ack"
-		// ack should be always set to true if the value is received from or acknowledged from the target system
-		await this.setStateAsync("testVariable", { val: true, ack: true });
-
-		// same thing, but the state is deleted after 30s (getState will return null afterwards)
-		await this.setStateAsync("testVariable", { val: true, ack: true, expire: 30 });
 
 		// examples for the checkPassword/checkGroup functions
 		let result = await this.checkPasswordAsync("admin", "iobroker");
@@ -94,11 +61,6 @@ class Dnscope extends utils.Adapter {
 	 */
 	onUnload(callback) {
 		try {
-			// Here you must clear all timeouts or intervals that may still be active
-			// clearTimeout(timeout1);
-			// clearTimeout(timeout2);
-			// ...
-			// clearInterval(interval1);
 
 			callback();
 		} catch (e) {
@@ -106,26 +68,7 @@ class Dnscope extends utils.Adapter {
 		}
 	}
 
-	// If you need to react to object changes, uncomment the following block and the corresponding line in the constructor.
-	// You also need to subscribe to the objects with `this.subscribeObjects`, similar to `this.subscribeStates`.
-	// /**
-	//  * Is called if a subscribed object changes
-	//  * @param {string} id
-	//  * @param {ioBroker.Object | null | undefined} obj
-	//  */
-	// onObjectChange(id, obj) {
-	// 	if (obj) {
-	// 		// The object was changed
-	// 		this.log.info(`object ${id} changed: ${JSON.stringify(obj)}`);
-	// 	} else {
-	// 		// The object was deleted
-	// 		this.log.info(`object ${id} deleted`);
-	// 	}
-	// }
-
 	/**
-	 * Is called if a subscribed state changes
-	 *
 	 * @param id
 	 * @param state
 	 */

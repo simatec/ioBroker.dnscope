@@ -36,7 +36,7 @@ export default [
             //'no-prototype-builtins': 'off',
             //'no-case-declarations': 'off',
             //'no-useless-escape': 'off',
-            //'jsdoc/require-param': 'off',
+            'jsdoc/require-param-description': 'off',
             //'@typescript-eslint/no-require-imports': 'off',
             //'jsdoc/no-types': 'off',
             //'jsdoc/tag-lines': 'off',
