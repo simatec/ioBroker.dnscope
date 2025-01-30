@@ -1,0 +1,96 @@
+{
+	"common": {
+		"name": "dnscope",
+		"version": "0.0.1",
+		"news": {
+			"0.0.1": {
+				"en": "initial release",
+				"de": "Erstveröffentlichung",
+				"ru": "Начальная версия",
+				"pt": "lançamento inicial",
+				"nl": "Eerste uitgave",
+				"fr": "Première version",
+				"it": "Versione iniziale",
+				"es": "Versión inicial",
+				"pl": "Pierwsze wydanie",
+				"uk": "Початкова версія",
+				"zh-cn": "首次出版"
+			}
+		},
+		"titleLang": {
+			"en": "DNScope",
+			"de": "DNScope",
+			"ru": "DNScope",
+			"pt": "DNScope",
+			"nl": "DNScope",
+			"fr": "DNScope",
+			"it": "DNScope",
+			"es": "DNScope",
+			"pl": "DNScope",
+			"uk": "DNScope",
+			"zh-cn": "DNScope"
+		},
+		"desc": {
+			"en": "DNScope is a Dynamic DNS Updater",
+			"de": "DNScope is a Dynamic DNS Updater",
+			"ru": "DNScope is a Dynamic DNS Updater",
+			"pt": "DNScope is a Dynamic DNS Updater",
+			"nl": "DNScope is a Dynamic DNS Updater",
+			"fr": "DNScope is a Dynamic DNS Updater",
+			"it": "DNScope is a Dynamic DNS Updater",
+			"es": "DNScope is a Dynamic DNS Updater",
+			"pl": "DNScope is a Dynamic DNS Updater",
+			"uk": "DNScope is a Dynamic DNS Updater",
+			"zh-cn": "DNScope is a Dynamic DNS Updater"
+		},
+		"authors": [
+			"simatec <simatec@simateccloud.de>"
+		],
+		"keywords": [
+			"DNS",
+			"Dynamic DNS",
+			"DNS Resover",
+			"NoIP",
+			"IPv64",
+			"DuckDNS"
+		],
+		"licenseInformation": {
+			"type": "free",
+			"license": "MIT"
+		},
+		"platform": "Javascript/Node.js",
+		"icon": "dnscope.png",
+		"enabled": true,
+		"extIcon": "https://raw.githubusercontent.com/simatec/ioBroker.dnscope/main/admin/dnscope.png",
+		"readme": "https://github.com/simatec/ioBroker.dnscope/blob/main/README.md",
+		"loglevel": "info",
+		"tier": 3,
+		"mode": "schedule",
+		"allowInit": true,
+		"type": "network",
+		"compact": true,
+		"connectionType": "cloud",
+		"dataSource": "poll",
+		"adminUI": {
+			"config": "json"
+		},
+		"dependencies": [
+			{
+				"js-controller": ">=6.0.11"
+			}
+		],
+		"globalDependencies": [
+			{
+				"admin": "7.0.23"
+			}
+		]
+	},
+	"native": {
+		"dyndnsServive": "duckdns",
+		"ipv4": true,
+		"ipv6": false,
+		"onlyChanges": true
+	},
+	"objects": [],
+	"instanceObjects": []
+}
