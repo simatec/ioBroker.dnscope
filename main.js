@@ -14,7 +14,7 @@ const utils = require("@iobroker/adapter-core");
 class Dnscope extends utils.Adapter {
 
 	/**
-	 * @param {Partial<utils.AdapterOptions>} [options={}]
+	 * @param [options]
 	 */
 	constructor(options) {
 		super({
@@ -36,10 +36,10 @@ class Dnscope extends utils.Adapter {
 
 		// The adapters config (in the instance object everything under the attribute "native") is accessible via
 		// this.config:
-		this.log.info("config dyndnsServive: " + this.config.dyndnsServive);
-		this.log.info("config ipv4: " + this.config.ipv4);
-		this.log.info("config ipv6: " + this.config.ipv6);
-		this.log.info("config onlyChanges: " + this.config.onlyChanges);
+		this.log.info(`config dyndnsServive: ${  this.config.dyndnsServive}`);
+		this.log.info(`config ipv4: ${  this.config.ipv4}`);
+		this.log.info(`config ipv6: ${  this.config.ipv6}`);
+		this.log.info(`config onlyChanges: ${  this.config.onlyChanges}`);
 
 		/*
 		For every state in the system there has to be also an object of type state
@@ -81,15 +81,16 @@ class Dnscope extends utils.Adapter {
 
 		// examples for the checkPassword/checkGroup functions
 		let result = await this.checkPasswordAsync("admin", "iobroker");
-		this.log.info("check user admin pw iobroker: " + result);
+		this.log.info(`check user admin pw iobroker: ${  result}`);
 
 		result = await this.checkGroupAsync("admin", "admin");
-		this.log.info("check group user admin group admin: " + result);
+		this.log.info(`check group user admin group admin: ${  result}`);
 	}
 
 	/**
 	 * Is called when adapter shuts down - callback has to be called under any circumstances!
-	 * @param {() => void} callback
+	 *
+	 * @param callback
 	 */
 	onUnload(callback) {
 		try {
@@ -124,8 +125,9 @@ class Dnscope extends utils.Adapter {
 
 	/**
 	 * Is called if a subscribed state changes
-	 * @param {string} id
-	 * @param {ioBroker.State | null | undefined} state
+	 *
+	 * @param id
+	 * @param state
 	 */
 	onStateChange(id, state) {
 		if (state) {
@@ -160,7 +162,7 @@ class Dnscope extends utils.Adapter {
 if (require.main !== module) {
 	// Export the constructor in compact mode
 	/**
-	 * @param {Partial<utils.AdapterOptions>} [options={}]
+	 * @param [options]
 	 */
 	module.exports = (options) => new Dnscope(options);
 } else {
