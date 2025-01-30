@@ -1,6 +1,6 @@
-"use strict";
+'use strict';
 
-const utils = require("@iobroker/adapter-core");
+const utils = require('@iobroker/adapter-core');
 
 const adapterName = require('./package.json').name.split('.').pop();
 
@@ -15,11 +15,11 @@ class Dnscope extends utils.Adapter {
 			...options,
 			name: adapterName,
 		});
-		this.on("ready", this.onReady.bind(this));
-		this.on("stateChange", this.onStateChange.bind(this));
-		// this.on("objectChange", this.onObjectChange.bind(this));
-		// this.on("message", this.onMessage.bind(this));
-		this.on("unload", this.onUnload.bind(this));
+		this.on('ready', this.onReady.bind(this));
+		this.on('stateChange', this.onStateChange.bind(this));
+		// this.on('objectChange', this.onObjectChange.bind(this));
+		// this.on('message', this.onMessage.bind(this));
+		this.on('unload', this.onUnload.bind(this));
 	}
 
 	async onReady() {
@@ -29,28 +29,28 @@ class Dnscope extends utils.Adapter {
 		this.log.info(`config ipv6: ${  this.config.ipv6}`);
 		this.log.info(`config onlyChanges: ${  this.config.onlyChanges}`);
 
-		await this.setObjectNotExistsAsync("testVariable", {
-			type: "state",
+		await this.setObjectNotExistsAsync('testVariable', {
+			type: 'state',
 			common: {
-				name: "testVariable",
-				type: "boolean",
-				role: "indicator",
+				name: 'testVariable',
+				type: 'boolean',
+				role: 'indicator',
 				read: true,
 				write: true,
 			},
 			native: {},
 		});
 
-		this.subscribeStates("testVariable");
+		this.subscribeStates('testVariable');
 
-		await this.setState("testVariable", true);
+		await this.setState('testVariable', true);
 
 
 		// examples for the checkPassword/checkGroup functions
-		let result = await this.checkPasswordAsync("admin", "iobroker");
+		let result = await this.checkPasswordAsync('admin', 'iobroker');
 		this.log.info(`check user admin pw iobroker: ${  result}`);
 
-		result = await this.checkGroupAsync("admin", "admin");
+		result = await this.checkGroupAsync('admin', 'admin');
 		this.log.info(`check group user admin group admin: ${  result}`);
 	}
 
@@ -85,17 +85,17 @@ class Dnscope extends utils.Adapter {
 	// If you need to accept messages in your adapter, uncomment the following block and the corresponding line in the constructor.
 	// /**
 	//  * Some message was sent to this instance over message box. Used by email, pushover, text2speech, ...
-	//  * Using this method requires "common.messagebox" property to be set to true in io-package.json
+	//  * Using this method requires 'common.messagebox' property to be set to true in io-package.json
 	//  * @param {ioBroker.Message} obj
 	//  */
 	// onMessage(obj) {
-	// 	if (typeof obj === "object" && obj.message) {
-	// 		if (obj.command === "send") {
+	// 	if (typeof obj === 'object' && obj.message) {
+	// 		if (obj.command === 'send') {
 	// 			// e.g. send email or pushover or whatever
-	// 			this.log.info("send command");
+	// 			this.log.info('send command');
 
 	// 			// Send response in callback if required
-	// 			if (obj.callback) this.sendTo(obj.from, obj.command, "Message received", obj.callback);
+	// 			if (obj.callback) this.sendTo(obj.from, obj.command, 'Message received', obj.callback);
 	// 		}
 	// 	}
 	// }
