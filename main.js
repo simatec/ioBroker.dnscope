@@ -33,6 +33,25 @@ class Dnscope extends utils.Adapter {
 					responseType: 'json'
 				});
 
+				const data = dataRequest.data;
+
+				await this.setObjectNotExistsAsync('data.currentIPv4', {
+					type: 'state',
+					common: {
+						name: 'current IPv4',
+						type: 'string',
+						role: 'indicator',
+						read: true,
+						write: false,
+					},
+					native: {},
+				});
+				const state = await this.getStateAsync('data.currentIPv4');
+
+				if (data?.ip !== state?.val) {
+					await this.setStateChangedAsync('data.currentIPv4', data?.ip ? data.ip : 'not available', true);
+				}
+
 				this.log.info(JSON.stringify(dataRequest.data));
 			} catch (err) {
 				this.log.warn(`ipinfo.io is not available: ${err}`);
@@ -47,6 +66,25 @@ class Dnscope extends utils.Adapter {
 					url: url,
 					responseType: 'json'
 				});
+
+				const data = dataRequest.data;
+
+				await this.setObjectNotExistsAsync('data.currentIPv6', {
+					type: 'state',
+					common: {
+						name: 'current IPv6',
+						type: 'string',
+						role: 'indicator',
+						read: true,
+						write: false,
+					},
+					native: {},
+				});
+				const state = await this.getStateAsync('data.currentIPv6');
+
+				if (data?.ip !== state?.val) {
+					await this.setStateChangedAsync('data.currentIPv6', data?.ip ? data.ip : 'not available', true);
+				}
 
 				this.log.info(JSON.stringify(dataRequest.data));
 			} catch (err) {
