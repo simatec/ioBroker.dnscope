@@ -1,6 +1,7 @@
 'use strict';
 
 const utils = require('@iobroker/adapter-core');
+const axios = require('axios');
 
 const adapterName = require('./package.json').name.split('.').pop();
 
@@ -23,35 +24,37 @@ class Dnscope extends utils.Adapter {
 	}
 
 	async onReady() {
-		// this.config:
-		this.log.info(`config dyndnsServive: ${  this.config.dyndnsServive}`);
-		this.log.info(`config ipv4: ${  this.config.ipv4}`);
-		this.log.info(`config ipv6: ${  this.config.ipv6}`);
-		this.log.info(`config onlyChanges: ${  this.config.onlyChanges}`);
+		if (this.config.ipv4) {
+			const url = 'https://ipinfo.io/json';
+			try {
+				const dataRequest = await axios({
+					method: 'get',
+					url: url,
+					responseType: 'json'
+				});
 
-		await this.setObjectNotExistsAsync('testVariable', {
-			type: 'state',
-			common: {
-				name: 'testVariable',
-				type: 'boolean',
-				role: 'indicator',
-				read: true,
-				write: true,
-			},
-			native: {},
-		});
+				this.log.info(JSON.stringify(dataRequest.data));
+			} catch (err) {
+				this.log.warn(`ipinfo.io is not available: ${err}`);
+			}
+		}
 
-		this.subscribeStates('testVariable');
+		if (this.config.ipv6) {
+			const url = 'https://v6.ipinfo.io/json';
+			try {
+				const dataRequest = await axios({
+					method: 'get',
+					url: url,
+					responseType: 'json'
+				});
 
-		await this.setState('testVariable', true);
+				this.log.info(JSON.stringify(dataRequest.data));
+			} catch (err) {
+				this.log.warn(`ipinfo.io is not available: ${err}`);
+			}
+		}
 
 
-		// examples for the checkPassword/checkGroup functions
-		let result = await this.checkPasswordAsync('admin', 'iobroker');
-		this.log.info(`check user admin pw iobroker: ${  result}`);
-
-		result = await this.checkGroupAsync('admin', 'admin');
-		this.log.info(`check group user admin group admin: ${  result}`);
 	}
 
 	/**
