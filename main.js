@@ -2,6 +2,7 @@
 
 const utils = require('@iobroker/adapter-core');
 const axios = require('axios');
+const dns = require('node:dns').promises;
 
 const adapterName = require('./package.json').name.split('.').pop();
 
@@ -52,6 +53,8 @@ class Dnscope extends utils.Adapter {
 					await this.setStateChangedAsync('data.currentIPv4', data?.ip ? data.ip : 'not available', true);
 				}
 
+				await this.resolveDNSv4('simateccloud.de');
+
 				this.log.info(JSON.stringify(dataRequest.data));
 			} catch (err) {
 				this.log.warn(`ipinfo.io is not available: ${err}`);
@@ -85,6 +88,7 @@ class Dnscope extends utils.Adapter {
 				if (data?.ip !== state?.val) {
 					await this.setStateChangedAsync('data.currentIPv6', data?.ip ? data.ip : 'not available', true);
 				}
+				await this.resolveDNSv6('simateccloud.de');
 
 				this.log.info(JSON.stringify(dataRequest.data));
 			} catch (err) {
@@ -94,6 +98,27 @@ class Dnscope extends utils.Adapter {
 
 
 	}
+
+	async resolveDNSv4(domain) {
+		try {
+			const addresses = await dns.resolve4(domain);
+			this.log.info(`IPv4-Adressen für ${domain}: ${addresses}`);
+		} catch (error) {
+			this.log.error(`Fehler bei der DNS-Auflösung: ${error}`);
+		}
+	}
+
+	async resolveDNSv6(domain) {
+		try {
+			const addresses = await dns.resolve6(domain);
+			this.log.info(`IPv6-Adressen für ${domain}: ${addresses}`);
+		} catch (error) {
+			this.log.error(`Fehler bei der DNS-Auflösung: ${error}`);
+		}
+	}
+
+
+
 
 	/**
 	 * Is called when adapter shuts down - callback has to be called under any circumstances!
