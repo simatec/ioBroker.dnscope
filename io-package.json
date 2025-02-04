@@ -86,11 +86,23 @@
 		]
 	},
 	"native": {
+		"domain": "",
 		"dyndnsServive": "duckdns",
 		"ipv4": true,
 		"ipv6": false,
+		"noipUser": "",
 		"onlyChanges": true
 	},
+	"encryptedNative": [
+		"duckdnsToken",
+		"ipv64Token",
+		"noipPassword"
+	],
+	"protectedNative": [
+		"duckdnsToken",
+		"ipv64Token",
+		"noipPassword"
+	],
 	"objects": [],
 	"instanceObjects": []
 }

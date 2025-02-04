@@ -6,7 +6,6 @@ const dns = require('node:dns').promises;
 
 const adapterName = require('./package.json').name.split('.').pop();
 
-
 class Dnscope extends utils.Adapter {
 
 	/**
@@ -31,6 +30,7 @@ class Dnscope extends utils.Adapter {
 				const dataRequest = await axios({
 					method: 'get',
 					url: url,
+					timeout: 10000,
 					responseType: 'json'
 				});
 
@@ -53,7 +53,10 @@ class Dnscope extends utils.Adapter {
 					await this.setStateChangedAsync('data.currentIPv4', data?.ip ? data.ip : 'not available', true);
 				}
 
-				await this.resolveDNSv4('simateccloud.de');
+				const lastIP = await this.resolveDNSv4(this.config.domain);
+				if (data?.ip !== lastIP) {
+					await this.updateDNSv4(data.ip);
+				}
 
 				this.log.info(JSON.stringify(dataRequest.data));
 			} catch (err) {
@@ -67,6 +70,7 @@ class Dnscope extends utils.Adapter {
 				const dataRequest = await axios({
 					method: 'get',
 					url: url,
+					timeout: 10000,
 					responseType: 'json'
 				});
 
@@ -88,37 +92,85 @@ class Dnscope extends utils.Adapter {
 				if (data?.ip !== state?.val) {
 					await this.setStateChangedAsync('data.currentIPv6', data?.ip ? data.ip : 'not available', true);
 				}
-				await this.resolveDNSv6('simateccloud.de');
+				const lastIP = await this.resolveDNSv6(this.config.domain);
+				if (data?.ip !== lastIP) {
+					await this.updateDNSv6(data.ip);
+				}
 
 				this.log.info(JSON.stringify(dataRequest.data));
 			} catch (err) {
 				this.log.warn(`ipinfo.io is not available: ${err}`);
 			}
 		}
-
-
 	}
 
 	async resolveDNSv4(domain) {
-		try {
-			const addresses = await dns.resolve4(domain);
-			this.log.info(`IPv4-Adressen für ${domain}: ${addresses}`);
-		} catch (error) {
-			this.log.error(`Fehler bei der DNS-Auflösung: ${error}`);
-		}
+		return new Promise(async (resolve, reject) => {
+			try {
+				const addresses = await dns.resolve4(domain);
+				this.log.info(`IPv4-Adressen für ${domain}: ${addresses}`);
+				resolve(addresses);
+			} catch (error) {
+				this.log.error(`Fehler bei der DNS-Auflösung: ${error}`);
+				reject();
+			}
+		});
 	}
 
 	async resolveDNSv6(domain) {
+		return new Promise(async (resolve, reject) => {
+			try {
+				const addresses = await dns.resolve6(domain);
+				this.log.info(`IPv6-Adressen für ${domain}: ${addresses}`);
+				resolve(addresses);
+			} catch (error) {
+				this.log.error(`Fehler bei der DNS-Auflösung: ${error}`);
+				reject();
+			}
+		});
+	}
+
+	async updateDNSv4(currentIPv4) {
+		let url = '';
+
+		switch (this.config.dyndnsServive) {
+			case 'duckdns':
+				url = `https://www.duckdns.org/update?domains=${this.config.domain.split('.')[0]}&token=${this.config.duckdnsToken}&ip=${currentIPv4}`
+				break;
+		}
+
 		try {
-			const addresses = await dns.resolve6(domain);
-			this.log.info(`IPv6-Adressen für ${domain}: ${addresses}`);
+			const response = await axios.get(url);
+			if (response.data.includes("OK")) {
+				this.log.log(`DuckDNS erfolgreich aktualisiert für ${this.config.domain}`);
+			} else {
+				this.log.error(`Fehler bei der Aktualisierung:`, response.data);
+			}
 		} catch (error) {
-			this.log.error(`Fehler bei der DNS-Auflösung: ${error}`);
+			this.log.error('Fehler bei der Anfrage:', error.message);
 		}
 	}
 
+	async updateDNSv6(currentIPv6) {
+		let url = '';
 
+		switch (this.config.dyndnsServive) {
+			case 'duckdns':
+				url = `https://www.duckdns.org/update?domains=${this.config.domain.split('.')[0]}&token=${this.config.duckdnsToken}&ipv6=${currentIPv6}`
+				break;
+		}
 
+		try {
+			const response = await axios.get(url);
+			if (response.data.includes("OK")) {
+				this.log.log(`DuckDNS erfolgreich aktualisiert für ${this.config.domain}`);
+			} else {
+				this.log.error(`Fehler bei der Aktualisierung:`, response.data);
+			}
+		} catch (error) {
+			this.log.error('Fehler bei der Anfrage:', error.message);
+		}
+	}
 
 	/**
 	 * Is called when adapter shuts down - callback has to be called under any circumstances!

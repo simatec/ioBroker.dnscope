@@ -1,0 +1,198 @@
+{
+	"i18n": true,
+	"type": "panel",
+	"items": {
+		"dnScopeDesc": {
+			"type": "staticText",
+			"text": "DNScope is a Dynamic DNS Updater",
+			"newLine": true,
+			"style": {
+				"fontSize": 20
+			},
+			"xs": 10,
+			"sm": 10,
+			"md": 10,
+			"lg": 10,
+			"xl": 10
+		},
+		"_settings": {
+			"newLine": true,
+			"type": "header",
+			"text": "DNScope Settings",
+			"size": 2,
+			"xs": 12,
+			"sm": 12,
+			"md": 12,
+			"lg": 12,
+			"xl": 12
+		},
+		"dyndnsServive": {
+			"type": "select",
+			"label": "DynDNS Service",
+			"options": [
+				{
+					"label": "DuckDNS",
+					"value": "duckdns"
+				},
+				{
+					"label": "IPv64",
+					"value": "ipv64"
+				},
+				{
+					"label": "NoIP",
+					"value": "noip"
+				}
+			],
+			"xs": 12,
+			"sm": 12,
+			"md": 8,
+			"lg": 4,
+			"xl": 4,
+			"newLine": true
+		},
+		"domain": {
+			"type": "text",
+			"label": "Domain",
+			"xs": 12,
+			"sm": 12,
+			"md": 8,
+			"lg": 4,
+			"xl": 4,
+			"help": "Domain",
+			"validator": "data.domain",
+			"validatorNoSaveOnError": true,
+			"placeholder": "yourname.example.com",
+			"newLine": true,
+		},
+		"noipUser": {
+			"type": "text",
+			"label": "NoIP Username",
+			"hidden": "data.dyndnsServive !== 'noip'",
+			"xs": 12,
+			"sm": 12,
+			"md": 8,
+			"lg": 4,
+			"xl": 4,
+			"help": "NoIP Username",
+			"validator": "data.noipUser",
+			"validatorNoSaveOnError": true,
+			"placeholder": "example@gmail.com",
+			"newLine": true
+		},
+		"noipPassword": {
+			"type": "password",
+			"hidden": "data.dyndnsServive !== 'noip'",
+			"visible": true,
+			"label": "NoIP Password",
+			"xs": 12,
+			"sm": 12,
+			"md": 8,
+			"lg": 4,
+			"xl": 4,
+			"validator": "data.noipPassword",
+			"validatorNoSaveOnError": true,
+			"help": "NoIP Password"
+		},
+		"duckdnsToken": {
+			"type": "password",
+			"hidden": "data.dyndnsServive !== 'duckdns'",
+			"visible": true,
+			"label": "DuckDNS Token",
+			"xs": 12,
+			"sm": 12,
+			"md": 8,
+			"lg": 4,
+			"xl": 4,
+			"validator": "data.duckdnsToken",
+			"validatorNoSaveOnError": true,
+			"help": "DuckDNS Token"
+		},
+		"ipv64Token": {
+			"type": "password",
+			"hidden": "data.dyndnsServive !== 'ipv64'",
+			"visible": true,
+			"label": "IPv64 Token",
+			"xs": 12,
+			"sm": 12,
+			"md": 8,
+			"lg": 4,
+			"xl": 4,
+			"validator": "data.ipv64Token",
+			"validatorNoSaveOnError": true,
+			"help": "IPv64 Token"
+		},
+		"ipv4": {
+			"type": "checkbox",
+			"label": "Check IPv4",
+			"xs": 12,
+			"sm": 12,
+			"md": 8,
+			"lg": 4,
+			"xl": 4,
+			"newLine": true
+		},
+		"ipv6": {
+			"type": "checkbox",
+			"label": "Check IPv6",
+			"xs": 12,
+			"sm": 12,
+			"md": 8,
+			"lg": 4,
+			"xl": 4
+		},
+		"onlyChanges": {
+			"type": "checkbox",
+			"label": "Refresh only by Change",
+			"xs": 12,
+			"sm": 12,
+			"md": 8,
+			"lg": 4,
+			"xl": 4
+		},
+		"_helpLine2": {
+			"newLine": true,
+			"type": "divider",
+			"color": "secondary",
+			"xs": 12,
+			"sm": 12,
+			"md": 12,
+			"lg": 12,
+			"xl": 12
+		},
+		"_donateTxt": {
+			"type": "staticText",
+			"text": "If you like this project and would like to support its development, you are welcome to leave a donation.",
+			"newLine": true,
+			"xs": 12,
+			"sm": 12,
+			"md": 12,
+			"lg": 12,
+			"xl": 12
+		},
+		"_donate": {
+			"type": "staticImage",
+			"tooltip": "PayPal.Me",
+			"noTranslation": true,
+			"href": "https://paypal.me/mk1676",
+			"src": "https://img.shields.io/badge/paypal-donate%20%7C%20spenden-blue.svg",
+			"newLine": true,
+			"xs": 7,
+			"sm": 3,
+			"md": 3,
+			"lg": 1.2,
+			"xl": 1.2
+		},
+		"_githubSponsor": {
+			"type": "staticImage",
+			"tooltip": "GitHub Sponsors",
+			"noTranslation": true,
+			"href": "https://github.com/sponsors/simatec",
+			"src": "https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86",
+			"xs": 5,
+			"sm": 2,
+			"md": 2,
+			"lg": 0.8,
+			"xl": 0.8
+		}
+	}
+}
