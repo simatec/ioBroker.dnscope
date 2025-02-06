@@ -25,6 +25,24 @@ class Dnscope extends utils.Adapter {
 
 	async onReady() {
 		if (this.config.ipv4) {
+			const currentIP = await this.checkipv4();
+			const lastIP = await this.resolveDNSv4(this.config.domain);
+			if (currentIP !== lastIP) {
+				await this.updateDNSv4(currentIP);
+			}
+		}
+
+		if (this.config.ipv6) {
+			const currentIP = await this.checkipv6();
+			const lastIP = await this.resolveDNSv6(this.config.domain);
+			if (currentIP !== lastIP) {
+				await this.updateDNSv6(currentIP);
+			}
+		}
+	}
+
+	async checkipv4() {
+		return new Promise(async (resolve, reject) => {
 			const url = 'https://ipinfo.io/json';
 			try {
 				const dataRequest = await axios({
@@ -52,19 +70,18 @@ class Dnscope extends utils.Adapter {
 				if (data?.ip !== state?.val) {
 					await this.setStateChangedAsync('data.currentIPv4', data?.ip ? data.ip : 'not available', true);
 				}
-
-				const lastIP = await this.resolveDNSv4(this.config.domain);
-				if (data?.ip !== lastIP) {
-					await this.updateDNSv4(data.ip);
-				}
+				resolve(data?.ip);
 
 				this.log.info(JSON.stringify(dataRequest.data));
 			} catch (err) {
 				this.log.warn(`ipinfo.io is not available: ${err}`);
+				reject();
 			}
-		}
+		});
+	}
 
-		if (this.config.ipv6) {
+	async checkipv6() {
+		return new Promise(async (resolve, reject) => {
 			const url = 'https://v6.ipinfo.io/json';
 			try {
 				const dataRequest = await axios({
@@ -92,16 +109,14 @@ class Dnscope extends utils.Adapter {
 				if (data?.ip !== state?.val) {
 					await this.setStateChangedAsync('data.currentIPv6', data?.ip ? data.ip : 'not available', true);
 				}
-				const lastIP = await this.resolveDNSv6(this.config.domain);
-				if (data?.ip !== lastIP) {
-					await this.updateDNSv6(data.ip);
-				}
+				resolve(data?.ip);
 
 				this.log.info(JSON.stringify(dataRequest.data));
 			} catch (err) {
 				this.log.warn(`ipinfo.io is not available: ${err}`);
+				reject();
 			}
-		}
+		});
 	}
 
 	async resolveDNSv4(domain) {
@@ -124,8 +139,8 @@ class Dnscope extends utils.Adapter {
 				this.log.info(`IPv6-Adressen für ${domain}: ${addresses}`);
 				resolve(addresses);
 			} catch (error) {
-				this.log.error(`Fehler bei der DNS-Auflösung: ${error}`);
-				reject();
+				this.log.warn(`Fehler bei der DNS-Auflösung: ${error}`);
+				resolve(null);
 			}
 		});
 	}
@@ -142,12 +157,12 @@ class Dnscope extends utils.Adapter {
 		try {
 			const response = await axios.get(url);
 			if (response.data.includes("OK")) {
-				this.log.log(`DuckDNS erfolgreich aktualisiert für ${this.config.domain}`);
+				this.log.info(`DuckDNS erfolgreich aktualisiert für ${this.config.domain}`);
 			} else {
-				this.log.error(`Fehler bei der Aktualisierung:`, response.data);
+				this.log.error(`Fehler bei der Aktualisierung: ${response.data}`);
 			}
 		} catch (error) {
-			this.log.error('Fehler bei der Anfrage:', error.message);
+			this.log.error(`Fehler bei der Anfrage: ${error.message}`);
 		}
 	}
 
@@ -163,12 +178,12 @@ class Dnscope extends utils.Adapter {
 		try {
 			const response = await axios.get(url);
 			if (response.data.includes("OK")) {
-				this.log.log(`DuckDNS erfolgreich aktualisiert für ${this.config.domain}`);
+				this.log.info(`DuckDNS erfolgreich aktualisiert für ${this.config.domain}`);
 			} else {
-				this.log.error(`Fehler bei der Aktualisierung:`, response.data);
+				this.log.error(`Fehler bei der Aktualisierung: ${response.data}`);
 			}
 		} catch (error) {
-			this.log.error('Fehler bei der Anfrage:', error.message);
+			this.log.error(`Fehler bei der Anfrage: ${error.message}`);
 		}
 	}
 
