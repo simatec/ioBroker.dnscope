@@ -70,12 +70,12 @@ class Dnscope extends utils.Adapter {
 				if (data?.ip !== state?.val) {
 					await this.setStateChangedAsync('data.currentIPv4', data?.ip ? data.ip : 'not available', true);
 				}
-				resolve(data?.ip);
+				
 
 				this.log.info(JSON.stringify(dataRequest.data));
 			} catch (err) {
 				this.log.warn(`ipinfo.io is not available: ${err}`);
-				reject();
+				resolve(null);
 			}
 		});
 	}
@@ -114,7 +114,7 @@ class Dnscope extends utils.Adapter {
 				this.log.info(JSON.stringify(dataRequest.data));
 			} catch (err) {
 				this.log.warn(`ipinfo.io is not available: ${err}`);
-				reject();
+				resolve(null);
 			}
 		});
 	}
@@ -126,8 +126,8 @@ class Dnscope extends utils.Adapter {
 				this.log.info(`IPv4-Adressen für ${domain}: ${addresses}`);
 				resolve(addresses);
 			} catch (error) {
-				this.log.error(`Fehler bei der DNS-Auflösung: ${error}`);
-				reject();
+				this.log.warn(`Fehler bei der DNS-Auflösung: ${error}`);
+				resolve(null);
 			}
 		});
 	}
