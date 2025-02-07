@@ -156,7 +156,7 @@ class Dnscope extends utils.Adapter {
 				url = `https://www.duckdns.org/update?domains=${domain.split('.')[0]}&token=${this.config.duckdnsToken}&ip=${currentIPv4}`;
 				break;
 			case 'ipv64':
-				url = `https://ipv64.net/update.php?key=${ipv64Token}&domain=${domain}&ip=${currentIPv4}`;
+				url = `https://ipv64.net/update.php?key=${this.config.ipv64Token}&domain=${domain}&ip=${currentIPv4}`;
 				break;
 			case 'noip':
 				url = `https://dynupdate.no-ip.com/nic/update?hostname=${domain}&myip=${currentIPv4}`;

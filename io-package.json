@@ -66,6 +66,7 @@
 		"loglevel": "info",
 		"tier": 3,
 		"mode": "schedule",
+		"schedule": "*/10 * * * *",
 		"allowInit": true,
 		"type": "network",
 		"compact": true,
