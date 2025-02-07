@@ -70,7 +70,7 @@ class Dnscope extends utils.Adapter {
 				if (data?.ip !== state?.val) {
 					await this.setStateChangedAsync('data.currentIPv4', data?.ip ? data.ip : 'not available', true);
 				}
-				
+				resolve(data?.ip);
 
 				this.log.info(JSON.stringify(dataRequest.data));
 			} catch (err) {
@@ -123,7 +123,7 @@ class Dnscope extends utils.Adapter {
 		return new Promise(async (resolve, reject) => {
 			try {
 				const addresses = await dns.resolve4(domain);
-				this.log.info(`IPv4-Adressen für ${domain}: ${addresses}`);
+				this.log.info(`IPv4 for ${domain}: ${addresses}`);
 				resolve(addresses);
 			} catch (error) {
 				this.log.warn(`Fehler bei der DNS-Auflösung: ${error}`);
@@ -136,7 +136,7 @@ class Dnscope extends utils.Adapter {
 		return new Promise(async (resolve, reject) => {
 			try {
 				const addresses = await dns.resolve6(domain);
-				this.log.info(`IPv6-Adressen für ${domain}: ${addresses}`);
+				this.log.info(`IPv6 for ${domain}: ${addresses}`);
 				resolve(addresses);
 			} catch (error) {
 				this.log.warn(`Fehler bei der DNS-Auflösung: ${error}`);
@@ -147,17 +147,35 @@ class Dnscope extends utils.Adapter {
 
 	async updateDNSv4(currentIPv4) {
 		let url = '';
+		let username = null;
+		let password = null;
+		const domain = this.config.domain;
 
 		switch (this.config.dyndnsServive) {
 			case 'duckdns':
-				url = `https://www.duckdns.org/update?domains=${this.config.domain.split('.')[0]}&token=${this.config.duckdnsToken}&ip=${currentIPv4}`
+				url = `https://www.duckdns.org/update?domains=${domain.split('.')[0]}&token=${this.config.duckdnsToken}&ip=${currentIPv4}`;
+				break;
+			case 'ipv64':
+				url = `https://ipv64.net/update.php?key=${ipv64Token}&domain=${domain}&ip=${currentIPv4}`;
+				break;
+			case 'noip':
+				url = `https://dynupdate.no-ip.com/nic/update?hostname=${domain}&myip=${currentIPv4}`;
+				password = this.config.noipPassword;
+				username = this.config.noipUser;
 				break;
 		}
 
 		try {
-			const response = await axios.get(url);
+			const config = {
+				method: 'get',
+				url: url,
+				auth: username && password ? { username, password } : null
+			};
+
+			const response = await axios(config);
+
 			if (response.data.includes("OK")) {
-				this.log.info(`DuckDNS erfolgreich aktualisiert für ${this.config.domain}`);
+				this.log.info(`DNS erfolgreich aktualisiert für ${this.config.domain}`);
 			} else {
 				this.log.error(`Fehler bei der Aktualisierung: ${response.data}`);
 			}
@@ -168,17 +186,34 @@ class Dnscope extends utils.Adapter {
 
 	async updateDNSv6(currentIPv6) {
 		let url = '';
+		let username = null;
+		let password = null;
+		const domain = this.config.domain;
 
 		switch (this.config.dyndnsServive) {
 			case 'duckdns':
-				url = `https://www.duckdns.org/update?domains=${this.config.domain.split('.')[0]}&token=${this.config.duckdnsToken}&ipv6=${currentIPv6}`
+				url = `https://www.duckdns.org/update?domains=${domain.split('.')[0]}&token=${this.config.duckdnsToken}&ipv6=${currentIPv6}`;
+				break;
+			case 'ipv64':
+				url = `https://ipv64.net/nic/update?key=${this.config.ipv64Token}&domain=${domain}&ip6=${currentIPv6}`;
+				break;
+			case 'noip':
+				url = `https://dynupdate.no-ip.com/nic/update?hostname=${domain}&myip=${currentIPv6}`;
+				password = this.config.noipPassword;
+				username = this.config.noipUser;
 				break;
 		}
 
 		try {
-			const response = await axios.get(url);
+			const config = {
+				method: 'get',
+				url: url,
+				auth: username && password ? { username, password } : null
+			};
+
+			const response = await axios(config);
 			if (response.data.includes("OK")) {
-				this.log.info(`DuckDNS erfolgreich aktualisiert für ${this.config.domain}`);
+				this.log.info(`DNS erfolgreich aktualisiert für ${this.config.domain}`);
 			} else {
 				this.log.error(`Fehler bei der Aktualisierung: ${response.data}`);
 			}
