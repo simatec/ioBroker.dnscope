@@ -163,6 +163,9 @@ class Dnscope extends utils.Adapter {
 				password = this.config.noipPassword;
 				username = this.config.noipUser;
 				break;
+			case 'custom':
+				url = this.config.customURL;
+				break;
 		}
 
 		try {

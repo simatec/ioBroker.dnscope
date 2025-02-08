@@ -87,6 +87,7 @@
 		]
 	},
 	"native": {
+		"customURL": "",
 		"domain": "",
 		"dyndnsServive": "duckdns",
 		"ipv4": true,
