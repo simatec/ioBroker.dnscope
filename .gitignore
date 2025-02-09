@@ -1,17 +1,16 @@
-# No dot-directories except github/vscode
-.*/
-!.vscode/
-!.github/
-
-*.code-workspace
+.git
+.idea
 node_modules
 nbproject
-
-# npm package files
-iobroker.*.tgz
-
-Thumbs.db
-
-# i18n intermediate files
 admin/i18n/flat.txt
 admin/i18n/*/flat.txt
+/lib/startIOB.bat
+/lib/*.bat
+/lib/*.log
+/lib/*.sh
+/lib/restore.json
+.vscode
+.DS_Store
+
+# ioBroker dev-server
+.dev-server/

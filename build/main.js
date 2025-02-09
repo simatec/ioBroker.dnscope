@@ -51,7 +51,7 @@ class Dnscope extends utils.Adapter {
     }
   }
   async checkipv4() {
-    return new Promise(async (resolve, reject) => {
+    return new Promise(async (resolve) => {
       const url = "https://ipinfo.io/json";
       try {
         const dataRequest = await (0, import_axios.default)({
@@ -78,14 +78,14 @@ class Dnscope extends utils.Adapter {
         }
         resolve(data == null ? void 0 : data.ip);
         this.log.info(JSON.stringify(dataRequest.data));
-      } catch (err) {
-        this.log.warn(`ipinfo.io is not available: ${err}`);
+      } catch (error) {
+        this.log.warn(`ipinfo.io is not available: ${error.toString()}`);
         resolve(null);
       }
     });
   }
   async checkipv6() {
-    return new Promise(async (resolve, reject) => {
+    return new Promise(async (resolve) => {
       const url = "https://v6.ipinfo.io/json";
       try {
         const dataRequest = await (0, import_axios.default)({
@@ -112,38 +112,38 @@ class Dnscope extends utils.Adapter {
         }
         resolve(data == null ? void 0 : data.ip);
         this.log.info(JSON.stringify(dataRequest.data));
-      } catch (err) {
-        this.log.warn(`ipinfo.io is not available: ${err}`);
+      } catch (error) {
+        this.log.warn(`ipinfo.io is not available: ${error.toString()}`);
         resolve(null);
       }
     });
   }
   async resolveDNSv4(domain) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise(async (resolve) => {
       try {
         const addresses = (await import_node_dns.promises.resolve4(domain)).toString();
         this.log.info(`IPv4 for ${domain}: ${addresses}`);
         resolve(addresses);
       } catch (error) {
-        this.log.warn(`Fehler bei der DNS-Aufl\xF6sung: ${error}`);
+        this.log.warn(`Error during DNS resolution: ${error.toString()}`);
         resolve(null);
       }
     });
   }
   async resolveDNSv6(domain) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise(async (resolve) => {
       try {
         const addresses = (await import_node_dns.promises.resolve6(domain)).toString();
         this.log.info(`IPv6 for ${domain}: ${addresses}`);
         resolve(addresses);
       } catch (error) {
-        this.log.warn(`Fehler bei der DNS-Aufl\xF6sung: ${error}`);
+        this.log.warn(`Error during DNS resolution: ${error.toString()}`);
         resolve(null);
       }
     });
   }
   async updateDNSv4(currentIPv4) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise(async (resolve) => {
       let url = "";
       let username = null;
       let password = null;
@@ -172,19 +172,19 @@ class Dnscope extends utils.Adapter {
         };
         const response = await (0, import_axios.default)(config);
         if (response.data.includes("OK")) {
-          this.log.info(`DNS erfolgreich aktualisiert f\xFCr ${this.config.domain}`);
+          this.log.info(`DNS successfully updated for ${this.config.domain}`);
         } else {
-          this.log.error(`Fehler bei der Aktualisierung: ${response.data}`);
+          this.log.error(`Error during the update: ${response.data}`);
         }
         resolve("OK");
       } catch (error) {
-        this.log.error(`Fehler bei der Anfrage: ${error.message}`);
+        this.log.error(`Error in the request: ${error.message}`);
         resolve("not OK");
       }
     });
   }
   async updateDNSv6(currentIPv6) {
-    return new Promise(async (resolve, reject) => {
+    return new Promise(async (resolve) => {
       let url = "";
       let username = null;
       let password = null;
@@ -201,6 +201,9 @@ class Dnscope extends utils.Adapter {
           password = this.config.noipPassword;
           username = this.config.noipUser;
           break;
+        case "custom":
+          url = this.config.customURL;
+          break;
       }
       try {
         const config = {
@@ -210,13 +213,13 @@ class Dnscope extends utils.Adapter {
         };
         const response = await (0, import_axios.default)(config);
         if (response.data.includes("OK")) {
-          this.log.info(`DNS erfolgreich aktualisiert f\xFCr ${this.config.domain}`);
+          this.log.info(`DNS successfully updated for ${this.config.domain}`);
         } else {
-          this.log.error(`Fehler bei der Aktualisierung: ${response.data}`);
+          this.log.error(`Error during the update: ${response.data}`);
         }
         resolve("OK");
       } catch (error) {
-        this.log.error(`Fehler bei der Anfrage: ${error.message}`);
+        this.log.error(`Error in the request: ${error.message}`);
         resolve("not OK");
       }
     });

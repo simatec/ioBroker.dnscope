@@ -54,10 +54,9 @@
   },
   "main": "build/main.js",
   "files": [
-    "admin/",
-    "admin{,/!(i18n)/**}/flat.txt",
-    "!admin/**/tsconfig.json",
-    "lib/",
+    "admin{,/!(src)/**}/!(tsconfig|tsconfig.*|.eslintrc).{json,json5}",
+    "admin{,/!(src)/**}/*.{html,css,png,svg,jpg,js}",
+    "build/",
     "!.dev-server",
     "!.vscode",
     "!.github",
@@ -69,10 +68,8 @@
     "!tasks",
     "!.idea",
     "!test",
-    "www/",
     "io-package.json",
-    "LICENSE",
-    "main.js"
+    "LICENSE"
   ],
   "scripts": {
     "prebuild": "rimraf build",
