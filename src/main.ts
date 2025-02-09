@@ -1,20 +1,16 @@
 'use strict';
 
-const utils = require('@iobroker/adapter-core');
-const axios = require('axios');
-const dns = require('node:dns').promises;
+import * as utils from '@iobroker/adapter-core';
+import axios, { type AxiosRequestConfig } from 'axios';
+import { promises as dns } from 'node:dns';
 
-const adapterName = require('./package.json').name.split('.').pop();
 
 class Dnscope extends utils.Adapter {
 
-	/**
-	 * @param [options]
-	 */
-	constructor(options) {
+	public constructor(options: Partial<utils.AdapterOptions> = {}) {
 		super({
 			...options,
-			name: adapterName,
+			name: 'dnscope',
 		});
 		this.on('ready', this.onReady.bind(this));
 		this.on('stateChange', this.onStateChange.bind(this));
@@ -23,7 +19,7 @@ class Dnscope extends utils.Adapter {
 		this.on('unload', this.onUnload.bind(this));
 	}
 
-	async onReady() {
+	private async onReady(): Promise<void> {
 		if (this.config.ipv4) {
 			const currentIP = await this.checkipv4();
 			const lastIP = await this.resolveDNSv4(this.config.domain);
@@ -33,7 +29,7 @@ class Dnscope extends utils.Adapter {
 		}
 
 		if (this.config.ipv6) {
-			const currentIP = await this.checkipv6();
+			const currentIP: string | null = await this.checkipv6();
 			const lastIP = await this.resolveDNSv6(this.config.domain);
 			if (currentIP !== lastIP) {
 				await this.updateDNSv6(currentIP);
@@ -41,7 +37,7 @@ class Dnscope extends utils.Adapter {
 		}
 	}
 
-	async checkipv4() {
+	private async checkipv4(): Promise<string | null> {
 		return new Promise(async (resolve, reject) => {
 			const url = 'https://ipinfo.io/json';
 			try {
@@ -73,14 +69,14 @@ class Dnscope extends utils.Adapter {
 				resolve(data?.ip);
 
 				this.log.info(JSON.stringify(dataRequest.data));
-			} catch (err) {
+			} catch (err: any) {
 				this.log.warn(`ipinfo.io is not available: ${err}`);
 				resolve(null);
 			}
 		});
 	}
 
-	async checkipv6() {
+	private async checkipv6(): Promise<string | null> {
 		return new Promise(async (resolve, reject) => {
 			const url = 'https://v6.ipinfo.io/json';
 			try {
@@ -112,44 +108,45 @@ class Dnscope extends utils.Adapter {
 				resolve(data?.ip);
 
 				this.log.info(JSON.stringify(dataRequest.data));
-			} catch (err) {
+			} catch (err: any ) {
 				this.log.warn(`ipinfo.io is not available: ${err}`);
 				resolve(null);
 			}
 		});
 	}
 
-	async resolveDNSv4(domain) {
+	private async resolveDNSv4(domain: string): Promise<string | null> {
 		return new Promise(async (resolve, reject) => {
 			try {
-				const addresses = await dns.resolve4(domain);
+				const addresses: string | null = (await dns.resolve4(domain)).toString();
 				this.log.info(`IPv4 for ${domain}: ${addresses}`);
 				resolve(addresses);
-			} catch (error) {
+			} catch (error: any) {
 				this.log.warn(`Fehler bei der DNS-Auflösung: ${error}`);
 				resolve(null);
 			}
 		});
 	}
 
-	async resolveDNSv6(domain) {
+	private async resolveDNSv6(domain: string): Promise<string | null> {
 		return new Promise(async (resolve, reject) => {
 			try {
-				const addresses = await dns.resolve6(domain);
+				const addresses: string | null = (await dns.resolve6(domain)).toString();
 				this.log.info(`IPv6 for ${domain}: ${addresses}`);
 				resolve(addresses);
-			} catch (error) {
+			} catch (error: any) {
 				this.log.warn(`Fehler bei der DNS-Auflösung: ${error}`);
 				resolve(null);
 			}
 		});
 	}
 
-	async updateDNSv4(currentIPv4) {
-		let url = '';
-		let username = null;
-		let password = null;
-		const domain = this.config.domain;
+	private async updateDNSv4(currentIPv4: string | null): Promise<string | null> {
+		return new Promise(async (resolve, reject) => {
+		let url = '' as string;
+		let username = null as null | string;
+		let password = null as null | string;
+		const domain: string = this.config.domain;
 
 		switch (this.config.dyndnsServive) {
 			case 'duckdns':
@@ -169,25 +166,29 @@ class Dnscope extends utils.Adapter {
 		}
 
 		try {
-			const config = {
+			const config: AxiosRequestConfig = {
 				method: 'get',
 				url: url,
-				auth: username && password ? { username, password } : null
+				auth: username && password ? { username, password } : undefined
 			};
 
 			const response = await axios(config);
 
-			if (response.data.includes("OK")) {
+			if (response.data.includes('OK')) {
 				this.log.info(`DNS erfolgreich aktualisiert für ${this.config.domain}`);
 			} else {
 				this.log.error(`Fehler bei der Aktualisierung: ${response.data}`);
 			}
-		} catch (error) {
+			resolve('OK');
+		} catch (error: any) {
 			this.log.error(`Fehler bei der Anfrage: ${error.message}`);
+			resolve('not OK');
 		}
+	});
 	}
 
-	async updateDNSv6(currentIPv6) {
+	private async updateDNSv6(currentIPv6: string | null): Promise<string | null> {
+		return new Promise(async (resolve, reject) => {
 		let url = '';
 		let username = null;
 		let password = null;
@@ -208,29 +209,27 @@ class Dnscope extends utils.Adapter {
 		}
 
 		try {
-			const config = {
+			const config: AxiosRequestConfig = {
 				method: 'get',
 				url: url,
-				auth: username && password ? { username, password } : null
+				auth: username && password ? { username, password } : undefined
 			};
 
 			const response = await axios(config);
-			if (response.data.includes("OK")) {
+			if (response.data.includes('OK')) {
 				this.log.info(`DNS erfolgreich aktualisiert für ${this.config.domain}`);
 			} else {
 				this.log.error(`Fehler bei der Aktualisierung: ${response.data}`);
 			}
-		} catch (error) {
+			resolve('OK');
+		} catch (error: any) {
 			this.log.error(`Fehler bei der Anfrage: ${error.message}`);
+			resolve('not OK');
 		}
+	});
 	}
 
-	/**
-	 * Is called when adapter shuts down - callback has to be called under any circumstances!
-	 *
-	 * @param callback
-	 */
-	onUnload(callback) {
+	private onUnload(callback: () => void): void {
 		try {
 
 			callback();
@@ -239,11 +238,7 @@ class Dnscope extends utils.Adapter {
 		}
 	}
 
-	/**
-	 * @param id
-	 * @param state
-	 */
-	onStateChange(id, state) {
+	private onStateChange(id: string, state: ioBroker.State | null | undefined): void {
 		if (state) {
 			// The state was changed
 			this.log.info(`state ${id} changed: ${state.val} (ack = ${state.ack})`);
@@ -275,11 +270,8 @@ class Dnscope extends utils.Adapter {
 
 if (require.main !== module) {
 	// Export the constructor in compact mode
-	/**
-	 * @param [options]
-	 */
-	module.exports = (options) => new Dnscope(options);
+	module.exports = (options: Partial<utils.AdapterOptions> | undefined) => new Dnscope(options);
 } else {
 	// otherwise start the instance directly
-	new Dnscope();
+	(() => new Dnscope())();
 }
