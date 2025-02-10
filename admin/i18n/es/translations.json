@@ -1,7 +1,7 @@
 {
-	"dnscope adapter settings": "Ajustes del adaptador para dnscope",
-	"dyndnsServive": "DynDNS Service",
-	"ipv4": "Check IPv4",
-	"ipv6": "Check IPv6",
-	"onlyChanges": "Refresh only by Change"
+    "dnscope adapter settings": "Configuración del adaptador para DNSCOPE",
+    "dyndnsServive": "Servicio Dyndns",
+    "ipv4": "Verifique IPv4",
+    "ipv6": "Verifique IPv6",
+    "onlyChanges": "Actualizar solo por el cambio"
 }

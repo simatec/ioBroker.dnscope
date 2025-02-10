@@ -1,7 +1,7 @@
 {
-	"dnscope adapter settings": "dnscope的适配器设置",
-	"dyndnsServive": "DynDNS Service",
-	"ipv4": "Check IPv4",
-	"ipv6": "Check IPv6",
-	"onlyChanges": "Refresh only by Change"
+    "dnscope adapter settings": "DNScope的适配器设置",
+    "dyndnsServive": "Dyndns服务",
+    "ipv4": "检查IPv4",
+    "ipv6": "检查IPv6",
+    "onlyChanges": "仅通过更改刷新"
 }
