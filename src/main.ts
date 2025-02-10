@@ -20,7 +20,7 @@ class Dnscope extends utils.Adapter {
 		if (this.config.ipv4) {
 			const currentIP: string | null = await this.checkipv4();
 			const lastIP: string | null = await this.resolveDNSv4(this.config.domain);
-			if (currentIP !== lastIP) {
+			if (this.config.onlyChanges && currentIP !== lastIP || !this.config.onlyChanges) {
 				await this.updateDNSv4(currentIP);
 			}
 		}
@@ -28,7 +28,7 @@ class Dnscope extends utils.Adapter {
 		if (this.config.ipv6) {
 			const currentIP: string | null = await this.checkipv6();
 			const lastIP: string | null = await this.resolveDNSv6(this.config.domain);
-			if (currentIP !== lastIP) {
+			if (this.config.onlyChanges && currentIP !== lastIP || !this.config.onlyChanges) {
 				await this.updateDNSv6(currentIP);
 			}
 		}
@@ -36,7 +36,6 @@ class Dnscope extends utils.Adapter {
 
 	private onUnload(callback: () => void): void {
 		try {
-
 			callback();
 		} catch (e) {
 			callback();
@@ -175,6 +174,7 @@ class Dnscope extends utils.Adapter {
 				const config: AxiosRequestConfig = {
 					method: 'get',
 					url: url,
+					timeout: 10000,
 					auth: username && password ? { username, password } : undefined
 				};
 
@@ -221,6 +221,7 @@ class Dnscope extends utils.Adapter {
 				const config: AxiosRequestConfig = {
 					method: 'get',
 					url: url,
+					timeout: 10000,
 					auth: username && password ? { username, password } : undefined
 				};
 

@@ -37,14 +37,14 @@ class Dnscope extends utils.Adapter {
     if (this.config.ipv4) {
       const currentIP = await this.checkipv4();
       const lastIP = await this.resolveDNSv4(this.config.domain);
-      if (currentIP !== lastIP) {
+      if (this.config.onlyChanges && currentIP !== lastIP || !this.config.onlyChanges) {
         await this.updateDNSv4(currentIP);
       }
     }
     if (this.config.ipv6) {
       const currentIP = await this.checkipv6();
       const lastIP = await this.resolveDNSv6(this.config.domain);
-      if (currentIP !== lastIP) {
+      if (this.config.onlyChanges && currentIP !== lastIP || !this.config.onlyChanges) {
         await this.updateDNSv6(currentIP);
       }
     }
@@ -174,6 +174,7 @@ class Dnscope extends utils.Adapter {
         const config = {
           method: "get",
           url,
+          timeout: 1e4,
           auth: username && password ? { username, password } : void 0
         };
         const response = await (0, import_axios.default)(config);
@@ -215,6 +216,7 @@ class Dnscope extends utils.Adapter {
         const config = {
           method: "get",
           url,
+          timeout: 1e4,
           auth: username && password ? { username, password } : void 0
         };
         const response = await (0, import_axios.default)(config);
