@@ -40,6 +40,9 @@ class Dnscope extends utils.Adapter {
       if (this.config.onlyChanges && currentIP !== lastIP || !this.config.onlyChanges) {
         await this.updateDNSv4(currentIP);
       }
+      if (!this.config.ipv6) {
+        this.terminate();
+      }
     }
     if (this.config.ipv6) {
       const currentIP = await this.checkipv6();
@@ -47,10 +50,12 @@ class Dnscope extends utils.Adapter {
       if (this.config.onlyChanges && currentIP !== lastIP || !this.config.onlyChanges) {
         await this.updateDNSv6(currentIP);
       }
+      this.terminate();
     }
   }
   onUnload(callback) {
     try {
+      this.log.debug("cleaned everything up...");
       callback();
     } catch (e) {
       callback();
