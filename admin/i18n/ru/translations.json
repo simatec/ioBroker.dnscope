@@ -1,7 +1,16 @@
 {
     "dnscope adapter settings": "Настройки адаптера для DNSCOPE",
-    "dyndnsServive": "Dyndns Service",
-    "ipv4": "Проверьте IPv4",
-    "ipv6": "Проверьте IPv6",
-    "onlyChanges": "Обновить только по переменам"
+    "DNScope is a Dynamic DNS Updater": "DNSCOPE - это динамический обновленный DNS",
+    "DNScope Settings": "Настройки DNSCOPE",
+    "DynDNS Service": "Dyndns Service",
+    "Domain": "Домен",
+    "NoIP Username": "NOUP -имя пользователя",
+    "NoIP Password": "NOUIP пароль",
+    "DuckDNS Token": "Duckdns токен",
+    "IPv64 Token": "Токен IPv64",
+    "Custom Update URL": "Пользовательское URL -адрес",
+    "Check IPv4": "Проверьте IPv4",
+    "Check IPv6": "Проверьте IPv6",
+    "Refresh only by Change": "Обновить только по переменам",
+    "If you like this project and would like to support its development, you are welcome to leave a donation.": "Если вам нравится этот проект и вы хотели бы поддержать его разработку, вы можете оставить пожертвование."
 }

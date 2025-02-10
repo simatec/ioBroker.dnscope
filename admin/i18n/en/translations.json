@@ -1,7 +1,16 @@
 {
 	"dnscope adapter settings": "Adapter settings for dnscope",
-	"dyndnsServive": "DynDNS Service",
-	"ipv4": "Check IPv4",
-	"ipv6": "Check IPv6",
-	"onlyChanges": "Refresh only by Change"
+	"DNScope is a Dynamic DNS Updater": "DNScope is a Dynamic DNS Updater",
+	"DNScope Settings": "DNScope Settings",
+	"DynDNS Service": "DynDNS Service",
+	"Domain": "Domain",
+	"NoIP Username": "NoIP Username",
+	"NoIP Password": "NoIP Password",
+	"DuckDNS Token": "DuckDNS Token",
+	"IPv64 Token": "IPv64 Token",
+	"Custom Update URL": "Custom Update URL",
+	"Check IPv4": "Check IPv4",
+	"Check IPv6": "Check IPv6",
+	"Refresh only by Change": "Refresh only by Change",
+	"If you like this project and would like to support its development, you are welcome to leave a donation.": "If you like this project and would like to support its development, you are welcome to leave a donation."
 }

@@ -1,7 +1,16 @@
 {
     "dnscope adapter settings": "Adapterinstellingen voor DNSCOPE",
-    "dyndnsServive": "Dyndns -service",
-    "ipv4": "Controleer IPv4",
-    "ipv6": "Controleer IPv6",
-    "onlyChanges": "Vernieuw alleen door verandering"
+    "DNScope is a Dynamic DNS Updater": "DNSCOPE is een dynamische DNS -updater",
+    "DNScope Settings": "DNSCOPE -instellingen",
+    "DynDNS Service": "Dyndns -service",
+    "Domain": "Domein",
+    "NoIP Username": "NOIP -gebruikersnaam",
+    "NoIP Password": "NOIP -wachtwoord",
+    "DuckDNS Token": "Duckdns token",
+    "IPv64 Token": "Ipv64 token",
+    "Custom Update URL": "Aangepaste update URL",
+    "Check IPv4": "Controleer IPv4",
+    "Check IPv6": "Controleer IPv6",
+    "Refresh only by Change": "Vernieuw alleen door verandering",
+    "If you like this project and would like to support its development, you are welcome to leave a donation.": "Als u dit project leuk vindt en de ontwikkeling ervan wilt ondersteunen, bent u van harte welkom om een ​​donatie achter te laten."
 }

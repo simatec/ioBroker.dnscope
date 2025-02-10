@@ -1,7 +1,16 @@
 {
     "dnscope adapter settings": "Ustawienia adaptera DNSCope",
-    "dyndnsServive": "Usługa dyndns",
-    "ipv4": "Sprawdź IPv4",
-    "ipv6": "Sprawdź IPv6",
-    "onlyChanges": "Odśwież tylko zmianę"
+    "DNScope is a Dynamic DNS Updater": "DNSCope to dynamiczny aktualizat DNS",
+    "DNScope Settings": "Ustawienia DNSCope",
+    "DynDNS Service": "Usługa dyndns",
+    "Domain": "Domena",
+    "NoIP Username": "Nazwa użytkownika Noip",
+    "NoIP Password": "Hasło NOIP",
+    "DuckDNS Token": "Token Duckdns",
+    "IPv64 Token": "Token IPv64",
+    "Custom Update URL": "Niestandardowy adres URL aktualizacji",
+    "Check IPv4": "Sprawdź IPv4",
+    "Check IPv6": "Sprawdź IPv6",
+    "Refresh only by Change": "Odśwież tylko zmianę",
+    "If you like this project and would like to support its development, you are welcome to leave a donation.": "Jeśli podoba ci się ten projekt i chcesz wesprzeć jego rozwój, możesz opuścić darowiznę."
 }
