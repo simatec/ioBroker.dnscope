@@ -116,6 +116,20 @@
 			"validatorNoSaveOnError": true,
 			"help": "DuckDNS Token"
 		},
+		"dynv6Token": {
+			"type": "password",
+			"hidden": "data.dyndnsServive !== 'dynv6'",
+			"visible": true,
+			"label": "dynv6 Token",
+			"xs": 12,
+			"sm": 12,
+			"md": 8,
+			"lg": 4,
+			"xl": 4,
+			"validator": "data.dynv6Token",
+			"validatorNoSaveOnError": true,
+			"help": "dynv6 Token"
+		},
 		"ipv64Token": {
 			"type": "password",
 			"hidden": "data.dyndnsServive !== 'ipv64'",
