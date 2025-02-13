@@ -35,6 +35,10 @@
 					"value": "duckdns"
 				},
 				{
+					"label": "dynv6",
+					"value": "dynv6"
+				},
+				{
 					"label": "IPv64",
 					"value": "ipv64"
 				},

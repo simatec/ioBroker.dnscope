@@ -98,12 +98,14 @@
     "encryptedNative": [
         "duckdnsToken",
         "ipv64Token",
-        "noipPassword"
+        "noipPassword",
+        "dynv6Token"
     ],
     "protectedNative": [
         "duckdnsToken",
         "ipv64Token",
-        "noipPassword"
+        "noipPassword",
+        "dynv6Token"
     ],
     "objects": [],
     "instanceObjects": []

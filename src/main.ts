@@ -174,6 +174,9 @@ class Dnscope extends utils.Adapter {
 				case 'custom':
 					url = this.config.customURL;
 					break;
+				case 'dynv6':
+					url = `https://ipv4.dynv6.com/api/update?ipv4=${currentIPv4}&token=${this.config.dynv6Token}`;
+					break;
 			}
 
 			try {
@@ -220,6 +223,9 @@ class Dnscope extends utils.Adapter {
 					break;
 				case 'custom':
 					url = this.config.customURL;
+					break;
+				case 'dynv6':
+					url = `https://ipv6.dynv6.com/api/update?ipv6=${currentIPv6}&token=${this.config.dynv6Token}`;
 					break;
 			}
 
