@@ -8,6 +8,7 @@
 	"NoIP Password": "NoIP Password",
 	"DuckDNS Token": "DuckDNS Token",
 	"IPv64 Token": "IPv64 Token",
+	"dynv6 Token": "dynv6 Token",
 	"Custom Update URL": "Custom Update URL",
 	"Check IPv4": "Check IPv4",
 	"Check IPv6": "Check IPv6",
