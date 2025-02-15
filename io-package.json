@@ -32,16 +32,16 @@
         },
         "desc": {
             "en": "DNScope is a Dynamic DNS Updater",
-            "de": "DNScope is a Dynamic DNS Updater",
-            "ru": "DNScope is a Dynamic DNS Updater",
-            "pt": "DNScope is a Dynamic DNS Updater",
-            "nl": "DNScope is a Dynamic DNS Updater",
-            "fr": "DNScope is a Dynamic DNS Updater",
-            "it": "DNScope is a Dynamic DNS Updater",
-            "es": "DNScope is a Dynamic DNS Updater",
-            "pl": "DNScope is a Dynamic DNS Updater",
-            "uk": "DNScope is a Dynamic DNS Updater",
-            "zh-cn": "DNScope is a Dynamic DNS Updater"
+            "de": "DNSCOPE ist ein dynamischer DNS-Updater",
+            "ru": "DNSCOPE - это динамический обновленный DNS",
+            "pt": "DNScope é um dinâmico DNS Updater",
+            "nl": "DNSCOPE is een dynamische DNS -updater",
+            "fr": "DNSCOPE est une mise à jour DNS dynamique",
+            "it": "DNSCope è un aggiornamento DNS dinamico",
+            "es": "Dnscope es un actualizador DNS dinámico",
+            "pl": "DNSCope to dynamiczny aktualizat DNS",
+            "uk": "DNScope - це динамічний оновлення DNS",
+            "zh-cn": "DNScope是动态的DNS更新程序"
         },
         "authors": [
             "simatec <simatec@simateccloud.de>"
