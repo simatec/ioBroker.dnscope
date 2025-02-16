@@ -47,7 +47,7 @@ in progress
 ## Changelog
 
 ### **WORK IN PROGRESS**
-* (simatec) initial release
+* (simatec) First Beta
 
 ## License
 MIT License
