@@ -6,6 +6,7 @@ import { promises as dns } from 'node:dns';
 
 
 class Dnscope extends utils.Adapter {
+	timerSleep: ioBroker.Timeout | undefined;
 
 	public constructor(options: Partial<utils.AdapterOptions> = {}) {
 		super({
@@ -14,6 +15,7 @@ class Dnscope extends utils.Adapter {
 		});
 		this.on('ready', this.onReady.bind(this));
 		this.on('unload', this.onUnload.bind(this));
+		this.timerSleep = null;
 	}
 
 	private async onReady(): Promise<void> {
@@ -24,6 +26,7 @@ class Dnscope extends utils.Adapter {
 				await this.updateDNSv4(currentIP);
 			}
 			if (!this.config.ipv6) {
+				await this.sleep(10000);
 				this.terminate();
 			}
 		}
@@ -34,6 +37,7 @@ class Dnscope extends utils.Adapter {
 			if (this.config.onlyChanges && currentIP !== lastIP || !this.config.onlyChanges) {
 				await this.updateDNSv6(currentIP);
 			}
+			await this.sleep(10000);
 			this.terminate();
 		}
 
@@ -41,6 +45,7 @@ class Dnscope extends utils.Adapter {
 
 	private onUnload(callback: () => void): void {
 		try {
+			this.clearTimeout(this.timerSleep);
 			this.log.debug('cleaned everything up...');
 			callback();
 		} catch (e) {
@@ -79,7 +84,7 @@ class Dnscope extends utils.Adapter {
 				}
 				resolve(data?.ip);
 
-				this.log.info(JSON.stringify(dataRequest.data));
+				this.log.debug(JSON.stringify(dataRequest.data));
 			} catch (error) {
 				this.log.warn(`ipinfo.io is not available: ${error.toString()}`);
 				resolve(null);
@@ -118,7 +123,7 @@ class Dnscope extends utils.Adapter {
 				}
 				resolve(data?.ip);
 
-				this.log.info(JSON.stringify(dataRequest.data));
+				this.log.debug(JSON.stringify(dataRequest.data));
 			} catch (error) {
 				this.log.warn(`ipinfo.io is not available: ${error.toString()}`);
 				resolve(null);
@@ -130,7 +135,7 @@ class Dnscope extends utils.Adapter {
 		return new Promise(async (resolve) => {
 			try {
 				const addresses: string | null = (await dns.resolve4(domain)).toString();
-				this.log.info(`IPv4 for ${domain}: ${addresses}`);
+				this.log.debug(`IPv4 for ${domain}: ${addresses}`);
 				resolve(addresses);
 			} catch (error) {
 				this.log.warn(`Error during DNS resolution: ${error.toString()}`);
@@ -143,7 +148,7 @@ class Dnscope extends utils.Adapter {
 		return new Promise(async (resolve) => {
 			try {
 				const addresses: string | null = (await dns.resolve6(domain)).toString();
-				this.log.info(`IPv6 for ${domain}: ${addresses}`);
+				this.log.debug(`IPv6 for ${domain}: ${addresses}`);
 				resolve(addresses);
 			} catch (error) {
 				this.log.warn(`Error during DNS resolution: ${error.toString()}`);
@@ -188,15 +193,10 @@ class Dnscope extends utils.Adapter {
 				};
 
 				const response = await axios(config);
-
-				if (response.data.includes('OK')) {
-					this.log.info(`DNS successfully updated for ${this.config.domain}`);
-				} else {
-					this.log.error(`Error during the update: ${response.data}`);
-				}
+				this.log.debug(`DNS Update State: ${JSON.stringify(response.data)}`);
 				resolve('OK');
 			} catch (error) {
-				this.log.error(`Error in the request: ${error.message}`);
+				this.log.error(`Error in the request for IPv4: ${error.message}`);
 				resolve('not OK');
 			}
 		});
@@ -238,16 +238,18 @@ class Dnscope extends utils.Adapter {
 				};
 
 				const response = await axios(config);
-				if (response.data.includes('OK')) {
-					this.log.info(`DNS successfully updated for ${this.config.domain}`);
-				} else {
-					this.log.error(`Error during the update: ${response.data}`);
-				}
+				this.log.debug(`DNS Update State: ${JSON.stringify(response.data)}`);
 				resolve('OK');
 			} catch (error) {
-				this.log.error(`Error in the request: ${error.message}`);
+				this.log.error(`Error in the request for IPv6: ${error.message}`);
 				resolve('not OK');
 			}
+		});
+	}
+
+	private async sleep(ms: number): Promise<void> {
+		return new Promise<void>((resolve) => {
+			this.timerSleep = this.setTimeout(() => resolve(), ms);
 		});
 	}
 }

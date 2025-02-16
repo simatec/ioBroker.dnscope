@@ -15,7 +15,6 @@ declare global {
 			onlyChanges: boolean;
 			ipv64Token: string;
 			dynv6Token: string;
-
 		}
 	}
 }
