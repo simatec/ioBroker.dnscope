@@ -23,6 +23,8 @@ class Dnscope extends utils.Adapter {
             const lastIP: string | null = await this.resolveDNSv4(this.config.domain);
             if ((this.config.onlyChanges && currentIP !== lastIP) || !this.config.onlyChanges) {
                 await this.updateDNSv4(currentIP);
+            } else {
+                this.log.debug('no changes for IPv4');
             }
             if (!this.config.ipv6) {
                 await this.sleep(10000);
@@ -35,6 +37,8 @@ class Dnscope extends utils.Adapter {
             const lastIP: string | null = await this.resolveDNSv6(this.config.domain);
             if ((this.config.onlyChanges && currentIP !== lastIP) || !this.config.onlyChanges) {
                 await this.updateDNSv6(currentIP);
+            } else {
+                this.log.debug('no changes for IPv6');
             }
             await this.sleep(10000);
             this.terminate();
