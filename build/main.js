@@ -63,181 +63,194 @@ class Dnscope extends utils.Adapter {
       this.log.debug("cleaned everything up...");
       callback();
     } catch (e) {
+      this.log.error(`Unload Error: ${e}`);
       callback();
     }
   }
   async checkipv4() {
-    return new Promise(async (resolve) => {
-      const url = "https://ipinfo.io/json";
-      try {
-        const dataRequest = await (0, import_axios.default)({
-          method: "get",
-          url,
-          timeout: 1e4,
-          responseType: "json"
-        });
-        const data = dataRequest.data;
-        await this.setObjectNotExistsAsync("data.currentIPv4", {
-          type: "state",
-          common: {
-            name: "current IPv4",
-            type: "string",
-            role: "indicator",
-            read: true,
-            write: false
-          },
-          native: {}
-        });
-        const state = await this.getStateAsync("data.currentIPv4");
-        if ((data == null ? void 0 : data.ip) !== (state == null ? void 0 : state.val)) {
-          await this.setStateChangedAsync("data.currentIPv4", (data == null ? void 0 : data.ip) ? data.ip : "not available", true);
+    return new Promise((resolve) => {
+      void (async () => {
+        const url = "https://ipinfo.io/json";
+        try {
+          const dataRequest = await (0, import_axios.default)({
+            method: "get",
+            url,
+            timeout: 1e4,
+            responseType: "json"
+          });
+          const data = dataRequest.data;
+          await this.setObjectNotExistsAsync("data.currentIPv4", {
+            type: "state",
+            common: {
+              name: "current IPv4",
+              type: "string",
+              role: "indicator",
+              read: true,
+              write: false
+            },
+            native: {}
+          });
+          const state = await this.getStateAsync("data.currentIPv4");
+          if ((data == null ? void 0 : data.ip) !== (state == null ? void 0 : state.val)) {
+            await this.setStateChangedAsync("data.currentIPv4", (data == null ? void 0 : data.ip) ? data.ip : "not available", true);
+          }
+          resolve(data == null ? void 0 : data.ip);
+          this.log.debug(JSON.stringify(dataRequest.data));
+        } catch (error) {
+          this.log.warn(`ipinfo.io is not available: ${error.toString()}`);
+          resolve(null);
         }
-        resolve(data == null ? void 0 : data.ip);
-        this.log.debug(JSON.stringify(dataRequest.data));
-      } catch (error) {
-        this.log.warn(`ipinfo.io is not available: ${error.toString()}`);
-        resolve(null);
-      }
+      })();
     });
   }
   async checkipv6() {
-    return new Promise(async (resolve) => {
-      const url = "https://v6.ipinfo.io/json";
-      try {
-        const dataRequest = await (0, import_axios.default)({
-          method: "get",
-          url,
-          timeout: 1e4,
-          responseType: "json"
-        });
-        const data = dataRequest.data;
-        await this.setObjectNotExistsAsync("data.currentIPv6", {
-          type: "state",
-          common: {
-            name: "current IPv6",
-            type: "string",
-            role: "indicator",
-            read: true,
-            write: false
-          },
-          native: {}
-        });
-        const state = await this.getStateAsync("data.currentIPv6");
-        if ((data == null ? void 0 : data.ip) !== (state == null ? void 0 : state.val)) {
-          await this.setStateChangedAsync("data.currentIPv6", (data == null ? void 0 : data.ip) ? data.ip : "not available", true);
+    return new Promise((resolve) => {
+      void (async () => {
+        const url = "https://v6.ipinfo.io/json";
+        try {
+          const dataRequest = await (0, import_axios.default)({
+            method: "get",
+            url,
+            timeout: 1e4,
+            responseType: "json"
+          });
+          const data = dataRequest.data;
+          await this.setObjectNotExistsAsync("data.currentIPv6", {
+            type: "state",
+            common: {
+              name: "current IPv6",
+              type: "string",
+              role: "indicator",
+              read: true,
+              write: false
+            },
+            native: {}
+          });
+          const state = await this.getStateAsync("data.currentIPv6");
+          if ((data == null ? void 0 : data.ip) !== (state == null ? void 0 : state.val)) {
+            await this.setStateChangedAsync("data.currentIPv6", (data == null ? void 0 : data.ip) ? data.ip : "not available", true);
+          }
+          resolve(data == null ? void 0 : data.ip);
+          this.log.debug(JSON.stringify(dataRequest.data));
+        } catch (error) {
+          this.log.warn(`ipinfo.io is not available: ${error.toString()}`);
+          resolve(null);
         }
-        resolve(data == null ? void 0 : data.ip);
-        this.log.debug(JSON.stringify(dataRequest.data));
-      } catch (error) {
-        this.log.warn(`ipinfo.io is not available: ${error.toString()}`);
-        resolve(null);
-      }
+      })();
     });
   }
   async resolveDNSv4(domain) {
-    return new Promise(async (resolve) => {
-      try {
-        const addresses = (await import_node_dns.promises.resolve4(domain)).toString();
-        this.log.debug(`IPv4 for ${domain}: ${addresses}`);
-        resolve(addresses);
-      } catch (error) {
-        this.log.warn(`Error during DNS resolution: ${error.toString()}`);
-        resolve(null);
-      }
+    return new Promise((resolve) => {
+      void (async () => {
+        try {
+          const addresses = (await import_node_dns.promises.resolve4(domain)).toString();
+          this.log.debug(`IPv4 for ${domain}: ${addresses}`);
+          resolve(addresses);
+        } catch (error) {
+          this.log.warn(`Error during DNS resolution: ${error.toString()}`);
+          resolve(null);
+        }
+      })();
     });
   }
   async resolveDNSv6(domain) {
-    return new Promise(async (resolve) => {
-      try {
-        const addresses = (await import_node_dns.promises.resolve6(domain)).toString();
-        this.log.debug(`IPv6 for ${domain}: ${addresses}`);
-        resolve(addresses);
-      } catch (error) {
-        this.log.warn(`Error during DNS resolution: ${error.toString()}`);
-        resolve(null);
-      }
+    return new Promise((resolve) => {
+      void (async () => {
+        try {
+          const addresses = (await import_node_dns.promises.resolve6(domain)).toString();
+          this.log.debug(`IPv6 for ${domain}: ${addresses}`);
+          resolve(addresses);
+        } catch (error) {
+          this.log.warn(`Error during DNS resolution: ${error.toString()}`);
+          resolve(null);
+        }
+      })();
     });
   }
   async updateDNSv4(currentIPv4) {
-    return new Promise(async (resolve) => {
-      let url = "";
-      let username = null;
-      let password = null;
-      const domain = this.config.domain;
-      switch (this.config.dyndnsServive) {
-        case "duckdns":
-          url = `https://www.duckdns.org/update?domains=${domain.split(".")[0]}&token=${this.config.duckdnsToken}&ip=${currentIPv4}`;
-          break;
-        case "ipv64":
-          url = `https://ipv64.net/update.php?key=${this.config.ipv64Token}&domain=${domain}&ip=${currentIPv4}`;
-          break;
-        case "noip":
-          url = `https://dynupdate.no-ip.com/nic/update?hostname=${domain}&myip=${currentIPv4}`;
-          password = this.config.noipPassword;
-          username = this.config.noipUser;
-          break;
-        case "custom":
-          url = this.config.customURL;
-          break;
-        case "dynv6":
-          url = `https://ipv4.dynv6.com/api/update?ipv4=${currentIPv4}&token=${this.config.dynv6Token}`;
-          break;
-      }
-      try {
-        const config = {
-          method: "get",
-          url,
-          timeout: 1e4,
-          auth: username && password ? { username, password } : void 0
-        };
-        const response = await (0, import_axios.default)(config);
-        this.log.debug(`DNS Update State: ${JSON.stringify(response.data)}`);
-        resolve("OK");
-      } catch (error) {
-        this.log.error(`Error in the request for IPv4: ${error.message}`);
-        resolve("not OK");
-      }
+    return new Promise((resolve) => {
+      void (async () => {
+        let url = "";
+        let username = null;
+        let password = null;
+        const domain = this.config.domain;
+        switch (this.config.dyndnsServive) {
+          case "duckdns":
+            url = `https://www.duckdns.org/update?domains=${domain.split(".")[0]}&token=${this.config.duckdnsToken}&ip=${currentIPv4}`;
+            break;
+          case "ipv64":
+            url = `https://ipv64.net/update.php?key=${this.config.ipv64Token}&domain=${domain}&ip=${currentIPv4}`;
+            break;
+          case "noip":
+            url = `https://dynupdate.no-ip.com/nic/update?hostname=${domain}&myip=${currentIPv4}`;
+            password = this.config.noipPassword;
+            username = this.config.noipUser;
+            break;
+          case "custom":
+            url = this.config.customURL;
+            break;
+          case "dynv6":
+            url = `https://ipv4.dynv6.com/api/update?ipv4=${currentIPv4}&token=${this.config.dynv6Token}`;
+            break;
+        }
+        try {
+          const config = {
+            method: "get",
+            url,
+            timeout: 1e4,
+            auth: username && password ? { username, password } : void 0
+          };
+          const response = await (0, import_axios.default)(config);
+          this.log.debug(`DNS Update State: ${JSON.stringify(response.data)}`);
+          resolve("OK");
+        } catch (error) {
+          this.log.error(`Error in the request for IPv4: ${error.message}`);
+          resolve("not OK");
+        }
+      })();
     });
   }
   async updateDNSv6(currentIPv6) {
-    return new Promise(async (resolve) => {
-      let url = "";
-      let username = null;
-      let password = null;
-      const domain = this.config.domain;
-      switch (this.config.dyndnsServive) {
-        case "duckdns":
-          url = `https://www.duckdns.org/update?domains=${domain.split(".")[0]}&token=${this.config.duckdnsToken}&ipv6=${currentIPv6}`;
-          break;
-        case "ipv64":
-          url = `https://ipv64.net/nic/update?key=${this.config.ipv64Token}&domain=${domain}&ip6=${currentIPv6}`;
-          break;
-        case "noip":
-          url = `https://dynupdate.no-ip.com/nic/update?hostname=${domain}&myip=${currentIPv6}`;
-          password = this.config.noipPassword;
-          username = this.config.noipUser;
-          break;
-        case "custom":
-          url = this.config.customURL;
-          break;
-        case "dynv6":
-          url = `https://ipv6.dynv6.com/api/update?ipv6=${currentIPv6}&token=${this.config.dynv6Token}`;
-          break;
-      }
-      try {
-        const config = {
-          method: "get",
-          url,
-          timeout: 1e4,
-          auth: username && password ? { username, password } : void 0
-        };
-        const response = await (0, import_axios.default)(config);
-        this.log.debug(`DNS Update State: ${JSON.stringify(response.data)}`);
-        resolve("OK");
-      } catch (error) {
-        this.log.error(`Error in the request for IPv6: ${error.message}`);
-        resolve("not OK");
-      }
+    return new Promise((resolve) => {
+      void (async () => {
+        let url = "";
+        let username = null;
+        let password = null;
+        const domain = this.config.domain;
+        switch (this.config.dyndnsServive) {
+          case "duckdns":
+            url = `https://www.duckdns.org/update?domains=${domain.split(".")[0]}&token=${this.config.duckdnsToken}&ipv6=${currentIPv6}`;
+            break;
+          case "ipv64":
+            url = `https://ipv64.net/nic/update?key=${this.config.ipv64Token}&domain=${domain}&ip6=${currentIPv6}`;
+            break;
+          case "noip":
+            url = `https://dynupdate.no-ip.com/nic/update?hostname=${domain}&myip=${currentIPv6}`;
+            password = this.config.noipPassword;
+            username = this.config.noipUser;
+            break;
+          case "custom":
+            url = this.config.customURL;
+            break;
+          case "dynv6":
+            url = `https://ipv6.dynv6.com/api/update?ipv6=${currentIPv6}&token=${this.config.dynv6Token}`;
+            break;
+        }
+        try {
+          const config = {
+            method: "get",
+            url,
+            timeout: 1e4,
+            auth: username && password ? { username, password } : void 0
+          };
+          const response = await (0, import_axios.default)(config);
+          this.log.debug(`DNS Update State: ${JSON.stringify(response.data)}`);
+          resolve("OK");
+        } catch (error) {
+          this.log.error(`Error in the request for IPv6: ${error.message}`);
+          resolve("not OK");
+        }
+      })();
     });
   }
   async sleep(ms) {
