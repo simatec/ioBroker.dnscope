@@ -205,7 +205,7 @@ class Dnscope extends utils.Adapter {
                     };
 
                     const response = await axios(config);
-                    this.log.debug(`DNS Update State: ${JSON.stringify(response.data)}`);
+                    this.log.debug(`DNS Update State for IPv4: ${JSON.stringify(response.data)}`);
                     resolve('OK');
                 } catch (error) {
                     this.log.error(`Error in the request for IPv4: ${error.message}`);
@@ -252,7 +252,7 @@ class Dnscope extends utils.Adapter {
                     };
 
                     const response = await axios(config);
-                    this.log.debug(`DNS Update State: ${JSON.stringify(response.data)}`);
+                    this.log.debug(`DNS Update State for IPv6: ${JSON.stringify(response.data)}`);
                     resolve('OK');
                 } catch (error) {
                     this.log.error(`Error in the request for IPv6: ${error.message}`);

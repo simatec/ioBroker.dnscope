@@ -61,7 +61,6 @@
 		"domain": {
 			"type": "text",
 			"label": "Domain",
-			"hidden": "data.dyndnsServive == 'custom'",
 			"xs": 12,
 			"sm": 12,
 			"md": 8,
