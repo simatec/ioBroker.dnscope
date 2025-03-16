@@ -49,6 +49,11 @@ in progress
 ### **WORK IN PROGRESS**
 * (simatec) First Beta
 
+### 0.0.1 (2025-02-03)
+* (simatec) First commit
+
+---
+
 ## License
 MIT License
 

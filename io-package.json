@@ -93,7 +93,11 @@
         "ipv4": true,
         "ipv6": false,
         "noipUser": "",
-        "onlyChanges": true
+        "onlyChanges": true,
+        "duckdnsToken": "",
+        "ipv64Token": "",
+        "noipPassword": "",
+        "dynv6Token": ""
     },
     "encryptedNative": [
         "duckdnsToken",
