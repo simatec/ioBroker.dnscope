@@ -24,32 +24,40 @@ This adapter uses the service `Sentry.io` to automatically report exceptions and
 
 ---
 
-## DNScope adapter for ioBroker
+## Description
 
+DNScope allows you to update your dynamic DNS account directly in ioBroker.
+It is possible to update your DNS account with the current IP address of your environment without any detours or additional hardware.
+
+You can determine the interval at which the check and update should take place. 
+The default interval is 10 minutes.
+
+The following DynDNS providers are currently supported:
+
+* IPv64
+* DuckDNS
+* NoIP
+* Dynv6
+* Custom
+
+When selecting `Custom`, it is possible to specify a direct update URL in order to integrate any provider that supports this.
 
 ---
 
-## Description
-
-in progress
-
-
-## Functions
-
-in progress
-
 ## Adapter configuration
 
-in progress
+Your access data to the DynDNS service is required for the adapter configuration.
+Depending on the provider, this can be a token or a user name/password.
+
+You must also enter the domain that is to be updated. 
+
+If you have several domains that are to be updated, you need one instance per domain
 
 ---
 <!-- ### **WORK IN PROGRESS** -->
 ## Changelog
 ### 0.1.0 (2025-03-16)
 * (simatec) First Beta
-
-### 0.0.1 (2025-02-03)
-* (simatec) First commit
 
 ---
 
