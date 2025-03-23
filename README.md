@@ -56,6 +56,10 @@ If you have several domains that are to be updated, you need one instance per do
 ---
 <!-- ### **WORK IN PROGRESS** -->
 ## Changelog
+### **WORK IN PROGRESS**
+* (simatec) Fix Delay
+* (simatec) Fix States
+
 ### 0.1.0 (2025-03-16)
 * (simatec) First Beta
 

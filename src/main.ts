@@ -5,8 +5,6 @@ import axios, { type AxiosRequestConfig } from 'axios';
 import { promises as dns } from 'node:dns';
 
 class Dnscope extends utils.Adapter {
-    private timerSleep: ioBroker.Timeout | undefined;
-
     public constructor(options: Partial<utils.AdapterOptions> = {}) {
         super({
             ...options,
@@ -14,7 +12,6 @@ class Dnscope extends utils.Adapter {
         });
         this.on('ready', this.onReady.bind(this));
         this.on('unload', this.onUnload.bind(this));
-        this.timerSleep = null;
     }
 
     private async onReady(): Promise<void> {
@@ -27,7 +24,7 @@ class Dnscope extends utils.Adapter {
                 this.log.debug('no changes for IPv4');
             }
             if (!this.config.ipv6) {
-                await this.sleep(10000);
+                await this.delay(10000);
                 this.terminate();
             }
         }
@@ -40,14 +37,13 @@ class Dnscope extends utils.Adapter {
             } else {
                 this.log.debug('no changes for IPv6');
             }
-            await this.sleep(10000);
+            await this.delay(10000);
             this.terminate();
         }
     }
 
     private onUnload(callback: () => void): void {
         try {
-            this.clearTimeout(this.timerSleep);
             this.log.debug('cleaned everything up...');
             callback();
         } catch (e) {
@@ -75,7 +71,7 @@ class Dnscope extends utils.Adapter {
                         common: {
                             name: 'current IPv4',
                             type: 'string',
-                            role: 'indicator',
+                            role: 'info.ip',
                             read: true,
                             write: false,
                         },
@@ -116,7 +112,7 @@ class Dnscope extends utils.Adapter {
                         common: {
                             name: 'current IPv6',
                             type: 'string',
-                            role: 'indicator',
+                            role: 'info.ip',
                             read: true,
                             write: false,
                         },
@@ -259,12 +255,6 @@ class Dnscope extends utils.Adapter {
                     resolve('not OK');
                 }
             })();
-        });
-    }
-
-    private async sleep(ms: number): Promise<void> {
-        return new Promise<void>(resolve => {
-            this.timerSleep = this.setTimeout(() => resolve(), ms);
         });
     }
 }

@@ -25,7 +25,6 @@ var utils = __toESM(require("@iobroker/adapter-core"));
 var import_axios = __toESM(require("axios"));
 var import_node_dns = require("node:dns");
 class Dnscope extends utils.Adapter {
-  timerSleep;
   constructor(options = {}) {
     super({
       ...options,
@@ -33,7 +32,6 @@ class Dnscope extends utils.Adapter {
     });
     this.on("ready", this.onReady.bind(this));
     this.on("unload", this.onUnload.bind(this));
-    this.timerSleep = null;
   }
   async onReady() {
     if (this.config.ipv4) {
@@ -45,7 +43,7 @@ class Dnscope extends utils.Adapter {
         this.log.debug("no changes for IPv4");
       }
       if (!this.config.ipv6) {
-        await this.sleep(1e4);
+        await this.delay(1e4);
         this.terminate();
       }
     }
@@ -57,13 +55,12 @@ class Dnscope extends utils.Adapter {
       } else {
         this.log.debug("no changes for IPv6");
       }
-      await this.sleep(1e4);
+      await this.delay(1e4);
       this.terminate();
     }
   }
   onUnload(callback) {
     try {
-      this.clearTimeout(this.timerSleep);
       this.log.debug("cleaned everything up...");
       callback();
     } catch (e) {
@@ -88,7 +85,7 @@ class Dnscope extends utils.Adapter {
             common: {
               name: "current IPv4",
               type: "string",
-              role: "indicator",
+              role: "info.ip",
               read: true,
               write: false
             },
@@ -124,7 +121,7 @@ class Dnscope extends utils.Adapter {
             common: {
               name: "current IPv6",
               type: "string",
-              role: "indicator",
+              role: "info.ip",
               read: true,
               write: false
             },
@@ -255,11 +252,6 @@ class Dnscope extends utils.Adapter {
           resolve("not OK");
         }
       })();
-    });
-  }
-  async sleep(ms) {
-    return new Promise((resolve) => {
-      this.timerSleep = this.setTimeout(() => resolve(), ms);
     });
   }
 }
