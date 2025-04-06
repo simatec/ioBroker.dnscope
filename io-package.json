@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "dnscope",
-    "version": "0.2.0",
+    "version": "0.2.1",
     "news": {
+      "0.2.1": {
+        "en": "small fix\ndependencies updated",
+        "de": "kleine fix\naktualisierte abhängigkeiten",
+        "ru": "небольшой ремонт\nобновленные зависимости",
+        "pt": "pequena correção\ndependências atualizadas",
+        "nl": "kleine fix\nafhankelijkheden bijgewerkt",
+        "fr": "petite fixation\ndépendances mises à jour",
+        "it": "piccola correzione\ndipendenze aggiornate",
+        "es": "pequeño\ndependencias actualizadas",
+        "pl": "mały fix\nzaktualizowane zależności",
+        "uk": "невелика фіксація\nоновлені залежності",
+        "zh-cn": "小修补\n更新依赖关系"
+      },
       "0.2.0": {
         "en": "Fix Delay\nFix States\ndependencies updated",
         "de": "Fehlerbehebung\nFixstaaten\naktualisierte abhängigkeiten",
