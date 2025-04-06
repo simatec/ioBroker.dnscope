@@ -34,6 +34,18 @@ class Dnscope extends utils.Adapter {
     this.on("unload", this.onUnload.bind(this));
   }
   async onReady() {
+    try {
+      const instObj = await this.getForeignObjectAsync(`system.adapter.${this.namespace}`);
+      if ((instObj == null ? void 0 : instObj.common.schedule) && instObj.common.schedule === "*/10 * * * *") {
+        instObj.common.schedule = `${Math.floor(Math.random() * 60)} */10 * * * *`;
+        this.log.info(`Default schedule found and adjusted to spread calls better!`);
+        await this.setForeignObject(`system.adapter.${this.namespace}`, instObj);
+        this.terminate ? this.terminate() : process.exit(0);
+        return;
+      }
+    } catch (err) {
+      this.log.error(`Could not check or adjust the schedule: ${err.message}`);
+    }
     if (this.config.ipv4) {
       const currentIP = await this.checkipv4();
       const lastIP = await this.resolveDNSv4(this.config.domain);
@@ -44,7 +56,7 @@ class Dnscope extends utils.Adapter {
       }
       if (!this.config.ipv6) {
         await this.delay(1e4);
-        this.terminate();
+        this.terminate ? this.terminate() : process.exit(0);
       }
     }
     if (this.config.ipv6) {
@@ -56,7 +68,7 @@ class Dnscope extends utils.Adapter {
         this.log.debug("no changes for IPv6");
       }
       await this.delay(1e4);
-      this.terminate();
+      this.terminate ? this.terminate() : process.exit(0);
     }
   }
   onUnload(callback) {
