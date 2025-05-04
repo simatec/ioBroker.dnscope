@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "dnscope",
-    "version": "0.2.2",
+    "version": "0.2.3",
     "news": {
+      "0.2.3": {
+        "en": "Fix Config\nFix Instance terminate",
+        "de": "Fehlerbehebung\nRechtssache",
+        "ru": "Исправить Config\nFix Instance прекращается",
+        "pt": "Configação de Fixação\nEncerramento da instância",
+        "nl": "Configureren\nFix Instance beëindigd",
+        "fr": "Correction de la configuration\nArrêt de l'instance",
+        "it": "Fissare la configurazione\nRisolvere la risoluzione",
+        "es": "Fije Config\nTerminar la instalación",
+        "pl": "Popraw konfigurację\nPoprawiona Sąd kończy",
+        "uk": "Налаштування\nВиправлення припинення дії",
+        "zh-cn": "修补配置\n实例终止"
+      },
       "0.2.2": {
         "en": "dependencies updated",
         "de": "aktualisierte abhängigkeiten",
