@@ -54,10 +54,6 @@ class Dnscope extends utils.Adapter {
       } else {
         this.log.debug("no changes for IPv4");
       }
-      if (!this.config.ipv6) {
-        await this.delay(1e4);
-        this.terminate ? this.terminate() : process.exit(0);
-      }
     }
     if (this.config.ipv6) {
       const currentIP = await this.checkipv6();
@@ -67,9 +63,9 @@ class Dnscope extends utils.Adapter {
       } else {
         this.log.debug("no changes for IPv6");
       }
-      await this.delay(1e4);
-      this.terminate ? this.terminate() : process.exit(0);
     }
+    await this.delay(1e4);
+    this.terminate ? this.terminate() : process.exit(0);
   }
   onUnload(callback) {
     try {

@@ -38,10 +38,6 @@ class Dnscope extends utils.Adapter {
             } else {
                 this.log.debug('no changes for IPv4');
             }
-            if (!this.config.ipv6) {
-                await this.delay(10000);
-                this.terminate ? this.terminate() : process.exit(0);
-            }
         }
 
         if (this.config.ipv6) {
@@ -52,9 +48,10 @@ class Dnscope extends utils.Adapter {
             } else {
                 this.log.debug('no changes for IPv6');
             }
-            await this.delay(10000);
-            this.terminate ? this.terminate() : process.exit(0);
         }
+
+        await this.delay(10_000);
+        this.terminate ? this.terminate() : process.exit(0);
     }
 
     private onUnload(callback: () => void): void {
