@@ -160,6 +160,7 @@
     ipv4: {
       type: 'checkbox',
       label: 'Check IPv4',
+      disabled: "!data.ipv6",
       xs: 12,
       sm: 12,
       md: 8,
@@ -170,6 +171,7 @@
     ipv6: {
       type: 'checkbox',
       label: 'Check IPv6',
+      disabled: "!data.ipv4",
       xs: 12,
       sm: 12,
       md: 8,

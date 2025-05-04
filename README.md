@@ -56,6 +56,11 @@ If you have several domains that are to be updated, you need one instance per do
 ---
 <!-- ### **WORK IN PROGRESS** -->
 ## Changelog
+
+### **WORK IN PROGRESS**
+* (simatec) Fix Config
+* (foxriver76) Fix Instance terminate
+
 ### 0.2.2 (2025-05-02)
 * (simatec) dependencies updated
 
