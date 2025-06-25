@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "dnscope",
-    "version": "0.2.3",
+    "version": "0.2.4",
     "news": {
+      "0.2.4": {
+        "en": "dependencies updated\nReady for NodeJS 24.x",
+        "de": "aktualisierte abhängigkeiten\nBereit für NodeJS 24.x",
+        "ru": "обновленные зависимости\nГотовность к NodeJS 24.x",
+        "pt": "dependências atualizadas\nPronto para NodeJS 24.x",
+        "nl": "afhankelijkheden bijgewerkt\nKlaar voor NodeJS 24.x",
+        "fr": "dépendances mises à jour\nPrêt pour NodeJS 24.x",
+        "it": "dipendenze aggiornate\nPronti per NodeJS 24.x",
+        "es": "dependencias actualizadas\nListo para NodeJS 24.x",
+        "pl": "zaktualizowane zależności\nGotowy do NodeJS 24.x",
+        "uk": "оновлені залежності\nГотовий для NodeJS 24.x",
+        "zh-cn": "更新依赖关系\n准备进入节点JS 24.x"
+      },
       "0.2.3": {
         "en": "Fix Config\nFix Instance terminate",
         "de": "Fehlerbehebung\nRechtssache",
