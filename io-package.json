@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "dnscope",
-    "version": "0.2.4",
+    "version": "0.2.5",
     "news": {
+      "0.2.5": {
+        "en": "Dependencies updated",
+        "de": "Ausgaben aktualisiert",
+        "ru": "Обновленные зависимости",
+        "pt": "Dependências atualizadas",
+        "nl": "Afhankelijkheden bijgewerkt",
+        "fr": "Dépendances actualisées",
+        "it": "Dipendenze aggiornate",
+        "es": "Actualización de las dependencias",
+        "pl": "Aktualizacja zależności",
+        "uk": "Залежність оновлено",
+        "zh-cn": "更新的依赖关系"
+      },
       "0.2.4": {
         "en": "dependencies updated\nReady for NodeJS 24.x",
         "de": "aktualisierte abhängigkeiten\nBereit für NodeJS 24.x",
