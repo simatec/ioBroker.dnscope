@@ -9,8 +9,8 @@ admin/i18n/*/flat.txt
 /lib/*.log
 /lib/*.sh
 /lib/restore.json
-.vscode
 .DS_Store
+.commitinfo
 
 # ioBroker dev-server
 .dev-server/
