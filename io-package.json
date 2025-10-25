@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "dnscope",
-    "version": "0.2.5",
+    "version": "0.2.6",
     "news": {
+      "0.2.6": {
+        "en": "dependencies updated\nFix npm publish",
+        "de": "aktualisierte abhängigkeiten\nNpm veröffentlichen",
+        "ru": "обновленные зависимости\nИздательство Fix npm",
+        "pt": "dependências atualizadas\nCorrigir a publicação do npm",
+        "nl": "afhankelijkheden bijgewerkt\nFix npm publiceren",
+        "fr": "dépendances mises à jour\nCorrection de npm publier",
+        "it": "dipendenze aggiornate\nFisso npm pubblicazione",
+        "es": "dependencias actualizadas\nCorrección npm publicar",
+        "pl": "zaktualizowane zależności\nNapraw publikację npm",
+        "uk": "оновлені залежності\nВиправлення npm опублікування",
+        "zh-cn": "更新依赖关系\n修复 npm 发布"
+      },
       "0.2.5": {
         "en": "Dependencies updated",
         "de": "Ausgaben aktualisiert",
@@ -80,19 +93,6 @@
         "pl": "Napraw opóźnienie\nNapraw stany\nzaktualizowane zależności",
         "uk": "Фіксація затримки\nФіксація\nоновлені залежності",
         "zh-cn": "修复延迟\n固定国家\n更新依赖关系"
-      },
-      "0.1.0": {
-        "en": "First Beta",
-        "de": "Erste Beta",
-        "ru": "Первая бета",
-        "pt": "Primeiro Beta",
-        "nl": "Eerste Beta",
-        "fr": "Première bêta",
-        "it": "Prima Beta",
-        "es": "Primera beta",
-        "pl": "Pierwsza Beta",
-        "uk": "Перша бета",
-        "zh-cn": "第一贝塔"
       }
     },
     "titleLang": {
