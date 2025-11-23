@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "dnscope",
-    "version": "0.2.6",
+    "version": "0.2.7",
     "news": {
+      "0.2.7": {
+        "en": "dependencies updated",
+        "de": "aktualisierte abhängigkeiten",
+        "ru": "обновленные зависимости",
+        "pt": "dependências atualizadas",
+        "nl": "afhankelijkheden bijgewerkt",
+        "fr": "dépendances mises à jour",
+        "it": "dipendenze aggiornate",
+        "es": "dependencias actualizadas",
+        "pl": "zaktualizowane zależności",
+        "uk": "оновлені залежності",
+        "zh-cn": "更新依赖关系"
+      },
       "0.2.6": {
         "en": "dependencies updated\nFix npm publish",
         "de": "aktualisierte abhängigkeiten\nNpm veröffentlichen",
@@ -80,19 +93,6 @@
         "pl": "mały fix\nzaktualizowane zależności",
         "uk": "невелика фіксація\nоновлені залежності",
         "zh-cn": "小修补\n更新依赖关系"
-      },
-      "0.2.0": {
-        "en": "Fix Delay\nFix States\ndependencies updated",
-        "de": "Fehlerbehebung\nFixstaaten\naktualisierte abhängigkeiten",
-        "ru": "Исправить задержку\nФиксированные государства\nобновленные зависимости",
-        "pt": "Fix Delay\nEstados Unidos\ndependências atualizadas",
-        "nl": "Vertraging herstellen\nFix-staten\nafhankelijkheden bijgewerkt",
-        "fr": "Correction du retard\nFixer les États\ndépendances mises à jour",
-        "it": "Riparare il ritardo\nStati\ndipendenze aggiornate",
-        "es": "Corrección\nEstados fijos\ndependencias actualizadas",
-        "pl": "Napraw opóźnienie\nNapraw stany\nzaktualizowane zależności",
-        "uk": "Фіксація затримки\nФіксація\nоновлені залежності",
-        "zh-cn": "修复延迟\n固定国家\n更新依赖关系"
       }
     },
     "titleLang": {
