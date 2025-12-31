@@ -94,7 +94,7 @@ If you have several domains that are to be updated, you need one instance per do
 ## License
 MIT License
 
-Copyright (c) 2025 simatec
+Copyright (c) 2025-2026 simatec
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
