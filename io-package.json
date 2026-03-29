@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "dnscope",
-    "version": "0.2.7",
+    "version": "0.2.8",
     "news": {
+      "0.2.8": {
+        "en": "Fix License\ndependencies updated",
+        "de": "Lizenzierung aktivieren\naktualisierte abhängigkeiten",
+        "ru": "Лицензия Fix\nобновленные зависимости",
+        "pt": "Licença de correção\ndependências atualizadas",
+        "nl": "Fix Licentie\nafhankelijkheden bijgewerkt",
+        "fr": "Correction de la licence\ndépendances mises à jour",
+        "it": "Fissare la licenza\ndipendenze aggiornate",
+        "es": "Fijar licencia\ndependencias actualizadas",
+        "pl": "Napraw licencję\nzaktualizowane zależności",
+        "uk": "Документація\nоновлені залежності",
+        "zh-cn": "修补许可证\n更新依赖关系"
+      },
       "0.2.7": {
         "en": "dependencies updated",
         "de": "aktualisierte abhängigkeiten",
@@ -80,19 +93,6 @@
         "pl": "zaktualizowane zależności",
         "uk": "оновлені залежності",
         "zh-cn": "更新依赖关系"
-      },
-      "0.2.1": {
-        "en": "small fix\ndependencies updated",
-        "de": "kleine fix\naktualisierte abhängigkeiten",
-        "ru": "небольшой ремонт\nобновленные зависимости",
-        "pt": "pequena correção\ndependências atualizadas",
-        "nl": "kleine fix\nafhankelijkheden bijgewerkt",
-        "fr": "petite fixation\ndépendances mises à jour",
-        "it": "piccola correzione\ndipendenze aggiornate",
-        "es": "pequeño\ndependencias actualizadas",
-        "pl": "mały fix\nzaktualizowane zależności",
-        "uk": "невелика фіксація\nоновлені залежності",
-        "zh-cn": "小修补\n更新依赖关系"
       }
     },
     "titleLang": {
