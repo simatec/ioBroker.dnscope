@@ -58,6 +58,7 @@ If you have several domains that are to be updated, you need one instance per do
 ## Changelog
 ### **WORK IN PROGRESS**
 * (simatec) Fix License
+* (simatec) dependencies updated
 
 ### 0.2.7 (2025-11-23)
 * (simatec) dependencies updated
