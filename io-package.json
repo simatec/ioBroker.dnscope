@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "dnscope",
-    "version": "0.2.8",
+    "version": "0.2.9",
     "news": {
+      "0.2.9": {
+        "en": "dependencies updated\nSource code cleaned up",
+        "de": "aktualisierte abhängigkeiten\nQuellcode aufgeräumt",
+        "ru": "обновленные зависимости\nИсходный код очищен",
+        "pt": "dependências atualizadas\nCódigo-fonte limpo",
+        "nl": "afhankelijkheden bijgewerkt\nBroncode opgeschoond",
+        "fr": "dépendances mises à jour\nCode source nettoyé",
+        "it": "dipendenze aggiornate\nCodice sorgente ripulito",
+        "es": "dependencias actualizadas\nCódigo fuente limpiado",
+        "pl": "zaktualizowane zależności\nKod źródłowy oczyszczony",
+        "uk": "оновлені залежності\nКод джерела очищення",
+        "zh-cn": "更新依赖关系\n源代码已清理"
+      },
       "0.2.8": {
         "en": "Fix License\ndependencies updated",
         "de": "Lizenzierung aktivieren\naktualisierte abhängigkeiten",
@@ -80,19 +93,6 @@
         "pl": "Popraw konfigurację\nPoprawiona Sąd kończy",
         "uk": "Налаштування\nВиправлення припинення дії",
         "zh-cn": "修补配置\n实例终止"
-      },
-      "0.2.2": {
-        "en": "dependencies updated",
-        "de": "aktualisierte abhängigkeiten",
-        "ru": "обновленные зависимости",
-        "pt": "dependências atualizadas",
-        "nl": "afhankelijkheden bijgewerkt",
-        "fr": "dépendances mises à jour",
-        "it": "dipendenze aggiornate",
-        "es": "dependencias actualizadas",
-        "pl": "zaktualizowane zależności",
-        "uk": "оновлені залежності",
-        "zh-cn": "更新依赖关系"
       }
     },
     "titleLang": {
