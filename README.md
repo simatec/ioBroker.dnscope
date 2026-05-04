@@ -42,6 +42,19 @@ The following DynDNS providers are currently supported:
 
 When selecting `Custom`, it is possible to specify a direct update URL in order to integrate any provider that supports this.
 
+The following placeholders can be used in the custom URL and will be replaced with the current IP address at runtime:
+
+| Placeholder | Description |
+|---|---|
+| `{{ipv4}}` | Current public IPv4 address |
+| `{{ipv6}}` | Current public IPv6 address |
+| `{{ip}}` | Current IP address (IPv4 in the IPv4 update, IPv6 in the IPv6 update) |
+
+**Example:**
+```
+https://dynupdate.example.com/update?hostname=myhome.example.com&myip={{ipv4}}&token=abc123
+```
+
 ---
 
 ## Adapter configuration

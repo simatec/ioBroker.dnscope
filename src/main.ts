@@ -179,7 +179,9 @@ class Dnscope extends utils.Adapter {
                 username = this.config.noipUser;
                 break;
             case 'custom':
-                url = this.config.customURL;
+                url = this.config.customURL
+                    .replace(/\{\{ipv4\}\}/gi, currentIPv4 ?? '')
+                    .replace(/\{\{ip\}\}/gi, currentIPv4 ?? '');
                 break;
             case 'dynv6':
                 url = `https://ipv4.dynv6.com/api/update?ipv4=${currentIPv4}&token=${this.config.dynv6Token}`;
@@ -222,7 +224,9 @@ class Dnscope extends utils.Adapter {
                 username = this.config.noipUser;
                 break;
             case 'custom':
-                url = this.config.customURL;
+                url = this.config.customURL
+                    .replace(/\{\{ipv6\}\}/gi, currentIPv6 ?? '')
+                    .replace(/\{\{ip\}\}/gi, currentIPv6 ?? '');
                 break;
             case 'dynv6':
                 url = `https://ipv6.dynv6.com/api/update?ipv6=${currentIPv6}&token=${this.config.dynv6Token}`;
