@@ -1,6 +1,6 @@
 {
   "name": "iobroker.dnscope",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "description": "DNScope is a Dynamic DNS Updater",
   "author": {
     "name": "simatec",

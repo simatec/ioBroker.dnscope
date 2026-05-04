@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "dnscope",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "news": {
+      "0.3.1": {
+        "en": "Fix status 400 error when IP is unavailable; add debug log for update URL",
+        "de": "Fehler 400 behoben wenn IP nicht verf\u00fcgbar; Debug-Log f\u00fcr Update-URL hinzugef\u00fcgt",
+        "ru": "\u0418\u0441\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0430 \u043e\u0448\u0438\u0431\u043a\u0430 400 \u043f\u0440\u0438 \u043d\u0435\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u043e\u0441\u0442\u0438 IP; \u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d Debug-\u041b\u043e\u0433 \u0434\u043b\u044f URL \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u044f",
+        "pt": "Corrigido erro 400 quando IP indispon\u00edvel; log de debug para URL de atualiza\u00e7\u00e3o",
+        "nl": "Fout 400 opgelost bij onbeschikbaar IP; debug-log voor update-URL toegevoegd",
+        "fr": "Correction erreur 400 quand IP indisponible; log de d\u00e9bogage pour l'URL de mise \u00e0 jour",
+        "it": "Corretto errore 400 quando IP non disponibile; aggiunto log di debug per URL aggiornamento",
+        "es": "Corregido error 400 cuando IP no disponible; log de depuraci\u00f3n para URL de actualizaci\u00f3n",
+        "pl": "Naprawiono b\u0142\u0105d 400 gdy IP niedost\u0119pne; dodano log debugowania dla URL aktualizacji",
+        "uk": "\u0412\u0438\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u043e \u043f\u043e\u043c\u0438\u043b\u043a\u0443 400 \u043f\u0440\u0438 \u043d\u0435\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u043e\u0441\u0442\u0456 IP; \u0434\u043e\u0434\u0430\u043d\u043e debug-\u043b\u043e\u0433 \u0434\u043b\u044f URL \u043e\u043d\u043e\u0432\u043b\u0435\u043d\u043d\u044f",
+        "zh-cn": "\u4fee\u590d\u4e86IP\u4e0d\u53ef\u7528\u65f6\u72b4\u9519\u8bef400\uff1b\u6dfb\u52a0\u4e86\u66f4\u65b0URL\u7684\u8c03\u8bd5\u65e5\u5fd7"
+      },
       "0.3.0": {
         "en": "Add IP placeholder support for custom update URL",
         "de": "IP-Platzhalterunterstützung für benutzerdefinierte Update-URL hinzugefügt",
