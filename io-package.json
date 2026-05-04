@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "dnscope",
-    "version": "0.2.9",
+    "version": "0.3.0",
     "news": {
+      "0.3.0": {
+        "en": "Add IP placeholder support for custom update URL",
+        "de": "IP-Platzhalterunterstützung für benutzerdefinierte Update-URL hinzugefügt",
+        "ru": "Добавлена поддержка плейсхолдеров IP для пользовательского URL обновления",
+        "pt": "Suporte a placeholder de IP para URL de atualização personalizada",
+        "nl": "IP-placeholder ondersteuning toegevoegd voor aangepaste update-URL",
+        "fr": "Ajout du support des espaces réservés IP pour l'URL de mise à jour personnalisée",
+        "it": "Aggiunto supporto placeholder IP per URL di aggiornamento personalizzato",
+        "es": "Soporte de marcadores de posición de IP para URL de actualización personalizada",
+        "pl": "Dodano obsługę symboli zastępczych IP dla niestandardowego adresu URL aktualizacji",
+        "uk": "Додано підтримку заповнювачів IP для користувацької URL оновлення",
+        "zh-cn": "为自定义更新URL添加IP占位符支持"
+      },
       "0.2.9": {
         "en": "dependencies updated\nSource code cleaned up",
         "de": "aktualisierte abhängigkeiten\nQuellcode aufgeräumt",

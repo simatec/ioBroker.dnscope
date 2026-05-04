@@ -69,6 +69,9 @@ If you have several domains that are to be updated, you need one instance per do
 ---
 <!-- ### **WORK IN PROGRESS** -->
 ## Changelog
+### 0.3.0 (2026-05-04)
+* (HJS72) Add IP placeholder support for custom update URL (`{{ipv4}}`, `{{ipv6}}`, `{{ip}}`)
+
 ### 0.2.9 (2026-04-26)
 * (simatec) dependencies updated
 * (simatec) Source code cleaned up
