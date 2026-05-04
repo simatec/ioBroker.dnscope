@@ -170,6 +170,8 @@ class Dnscope extends utils.Adapter {
         let password = null as null | string;
         const domain: string = this.config.domain;
 
+        this.log.debug(`IPv4 update provider: ${this.config.dyndnsServive}, domain: ${domain}, current IP: ${currentIPv4}`);
+
         switch (this.config.dyndnsServive) {
             case 'duckdns':
                 url = `https://www.duckdns.org/update?domains=${domain.split('.')[0]}&token=${this.config.duckdnsToken}&ip=${currentIPv4}`;
@@ -201,11 +203,20 @@ class Dnscope extends utils.Adapter {
             };
 
             this.log.debug(`IPv4 update request URL: ${url}`);
+            this.log.debug(`IPv4 request auth enabled: ${config.auth ? 'yes' : 'no'}, timeout: ${config.timeout}`);
             const response = await axios(config);
             this.log.debug(`DNS Update State for IPv4: ${JSON.stringify(response.data)}`);
             return 'OK';
         } catch (error) {
-            this.log.error(`Error in the request for IPv4: ${error.message}`);
+            if (axios.isAxiosError(error)) {
+                this.log.error(`Error in the request for IPv4: ${error.message}`);
+                this.log.debug(`IPv4 response status: ${error.response?.status ?? 'unknown'}`);
+                this.log.debug(`IPv4 response status text: ${error.response?.statusText ?? 'unknown'}`);
+                this.log.debug(`IPv4 response body: ${JSON.stringify(error.response?.data ?? 'no response body')}`);
+                this.log.debug(`IPv4 response headers: ${JSON.stringify(error.response?.headers ?? 'no response headers')}`);
+            } else {
+                this.log.error(`Error in the request for IPv4: ${String(error)}`);
+            }
             return 'not OK';
         }
     }
@@ -219,6 +230,8 @@ class Dnscope extends utils.Adapter {
         let username = null;
         let password = null;
         const domain = this.config.domain;
+
+        this.log.debug(`IPv6 update provider: ${this.config.dyndnsServive}, domain: ${domain}, current IP: ${currentIPv6}`);
 
         switch (this.config.dyndnsServive) {
             case 'duckdns':
@@ -251,11 +264,20 @@ class Dnscope extends utils.Adapter {
             };
 
             this.log.debug(`IPv6 update request URL: ${url}`);
+            this.log.debug(`IPv6 request auth enabled: ${config.auth ? 'yes' : 'no'}, timeout: ${config.timeout}`);
             const response = await axios(config);
             this.log.debug(`DNS Update State for IPv6: ${JSON.stringify(response.data)}`);
             return 'OK';
         } catch (error) {
-            this.log.error(`Error in the request for IPv6: ${error.message}`);
+            if (axios.isAxiosError(error)) {
+                this.log.error(`Error in the request for IPv6: ${error.message}`);
+                this.log.debug(`IPv6 response status: ${error.response?.status ?? 'unknown'}`);
+                this.log.debug(`IPv6 response status text: ${error.response?.statusText ?? 'unknown'}`);
+                this.log.debug(`IPv6 response body: ${JSON.stringify(error.response?.data ?? 'no response body')}`);
+                this.log.debug(`IPv6 response headers: ${JSON.stringify(error.response?.headers ?? 'no response headers')}`);
+            } else {
+                this.log.error(`Error in the request for IPv6: ${String(error)}`);
+            }
             return 'not OK';
         }
     }
