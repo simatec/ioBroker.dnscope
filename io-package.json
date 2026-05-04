@@ -1,8 +1,21 @@
 {
   "common": {
     "name": "dnscope",
-    "version": "0.3.1",
+    "version": "0.3.2",
     "news": {
+      "0.3.2": {
+        "en": "Add detailed HTTP error diagnostics in debug logs and include compiled build output",
+        "de": "Detaillierte HTTP-Fehlerdiagnose im Debug-Log hinzugefügt und kompiliertes Build aktualisiert",
+        "ru": "Добавлена подробная диагностика HTTP-ошибок в debug-логи и обновлен скомпилированный build",
+        "pt": "Adicionados diagnósticos detalhados de erro HTTP no log de depuração e build compilado atualizado",
+        "nl": "Gedetailleerde HTTP-foutdiagnostiek toegevoegd in debug-log en gecompileerde build bijgewerkt",
+        "fr": "Ajout de diagnostics HTTP détaillés dans les logs de débogage et mise à jour du build compilé",
+        "it": "Aggiunta diagnostica dettagliata degli errori HTTP nei log di debug e aggiornato il build compilato",
+        "es": "Se añadieron diagnósticos detallados de errores HTTP en logs de depuración y se actualizó el build compilado",
+        "pl": "Dodano szczegółową diagnostykę błędów HTTP w logach debug i zaktualizowano skompilowany build",
+        "uk": "Додано детальну діагностику HTTP-помилок у debug-логах та оновлено скомпільований build",
+        "zh-cn": "在调试日志中添加了详细HTTP错误诊断，并更新了编译后的构建输出"
+      },
       "0.3.1": {
         "en": "Fix status 400 error when IP is unavailable; add debug log for update URL",
         "de": "Fehler 400 behoben wenn IP nicht verf\u00fcgbar; Debug-Log f\u00fcr Update-URL hinzugef\u00fcgt",
