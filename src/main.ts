@@ -161,6 +161,10 @@ class Dnscope extends utils.Adapter {
     }
 
     private async updateDNSv4(currentIPv4: string | null): Promise<string | null> {
+        if (!currentIPv4) {
+            this.log.warn('IPv4 address could not be determined, skipping update');
+            return null;
+        }
         let url = '' as string;
         let username = null as null | string;
         let password = null as null | string;
@@ -206,6 +210,10 @@ class Dnscope extends utils.Adapter {
     }
 
     private async updateDNSv6(currentIPv6: string | null): Promise<string | null> {
+        if (!currentIPv6) {
+            this.log.warn('IPv6 address could not be determined, skipping update');
+            return null;
+        }
         let url = '';
         let username = null;
         let password = null;
