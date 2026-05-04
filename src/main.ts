@@ -200,6 +200,7 @@ class Dnscope extends utils.Adapter {
                 auth: username && password ? { username, password } : undefined,
             };
 
+            this.log.debug(`IPv4 update request URL: ${url}`);
             const response = await axios(config);
             this.log.debug(`DNS Update State for IPv4: ${JSON.stringify(response.data)}`);
             return 'OK';
@@ -249,6 +250,7 @@ class Dnscope extends utils.Adapter {
                 auth: username && password ? { username, password } : undefined,
             };
 
+            this.log.debug(`IPv6 update request URL: ${url}`);
             const response = await axios(config);
             this.log.debug(`DNS Update State for IPv6: ${JSON.stringify(response.data)}`);
             return 'OK';
