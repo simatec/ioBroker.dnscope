@@ -56,6 +56,9 @@ If you have several domains that are to be updated, you need one instance per do
 ---
 <!-- ### **WORK IN PROGRESS** -->
 ## Changelog
+### **WORK IN PROGRESS**
+- (copilot) Adapter requires node.js >= 22 now
+
 ### 0.2.9 (2026-04-26)
 * (simatec) dependencies updated
 * (simatec) Source code cleaned up
