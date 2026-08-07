@@ -99,6 +99,8 @@ If you have several domains that are to be updated, you need one instance per do
 
 ---
 
+[Older changelogs can be found there](CHANGELOG_OLD.md)
+
 ## License
 MIT License
 
