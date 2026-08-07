@@ -161,10 +161,16 @@ class Dnscope extends utils.Adapter {
     }
 
     private async updateDNSv4(currentIPv4: string | null): Promise<string | null> {
+        if (!currentIPv4) {
+            this.log.warn('IPv4 address could not be determined, skipping update');
+            return null;
+        }
         let url = '' as string;
         let username = null as null | string;
         let password = null as null | string;
         const domain: string = this.config.domain;
+
+        this.log.debug(`IPv4 update provider: ${this.config.dyndnsServive}, domain: ${domain}, current IP: ${currentIPv4}`);
 
         switch (this.config.dyndnsServive) {
             case 'duckdns':
@@ -179,7 +185,9 @@ class Dnscope extends utils.Adapter {
                 username = this.config.noipUser;
                 break;
             case 'custom':
-                url = this.config.customURL;
+                url = this.config.customURL
+                    .replace(/\{\{ipv4\}\}/gi, currentIPv4 ?? '')
+                    .replace(/\{\{ip\}\}/gi, currentIPv4 ?? '');
                 break;
             case 'dynv6':
                 url = `https://ipv4.dynv6.com/api/update?ipv4=${currentIPv4}&token=${this.config.dynv6Token}`;
@@ -194,20 +202,36 @@ class Dnscope extends utils.Adapter {
                 auth: username && password ? { username, password } : undefined,
             };
 
+            this.log.debug(`IPv4 update request URL: ${url}`);
+            this.log.debug(`IPv4 request auth enabled: ${config.auth ? 'yes' : 'no'}, timeout: ${config.timeout}`);
             const response = await axios(config);
             this.log.debug(`DNS Update State for IPv4: ${JSON.stringify(response.data)}`);
             return 'OK';
         } catch (error) {
-            this.log.error(`Error in the request for IPv4: ${error.message}`);
+            if (axios.isAxiosError(error)) {
+                this.log.error(`Error in the request for IPv4: ${error.message}`);
+                this.log.debug(`IPv4 response status: ${error.response?.status ?? 'unknown'}`);
+                this.log.debug(`IPv4 response status text: ${error.response?.statusText ?? 'unknown'}`);
+                this.log.debug(`IPv4 response body: ${JSON.stringify(error.response?.data ?? 'no response body')}`);
+                this.log.debug(`IPv4 response headers: ${JSON.stringify(error.response?.headers ?? 'no response headers')}`);
+            } else {
+                this.log.error(`Error in the request for IPv4: ${String(error)}`);
+            }
             return 'not OK';
         }
     }
 
     private async updateDNSv6(currentIPv6: string | null): Promise<string | null> {
+        if (!currentIPv6) {
+            this.log.warn('IPv6 address could not be determined, skipping update');
+            return null;
+        }
         let url = '';
         let username = null;
         let password = null;
         const domain = this.config.domain;
+
+        this.log.debug(`IPv6 update provider: ${this.config.dyndnsServive}, domain: ${domain}, current IP: ${currentIPv6}`);
 
         switch (this.config.dyndnsServive) {
             case 'duckdns':
@@ -222,7 +246,9 @@ class Dnscope extends utils.Adapter {
                 username = this.config.noipUser;
                 break;
             case 'custom':
-                url = this.config.customURL;
+                url = this.config.customURL
+                    .replace(/\{\{ipv6\}\}/gi, currentIPv6 ?? '')
+                    .replace(/\{\{ip\}\}/gi, currentIPv6 ?? '');
                 break;
             case 'dynv6':
                 url = `https://ipv6.dynv6.com/api/update?ipv6=${currentIPv6}&token=${this.config.dynv6Token}`;
@@ -237,11 +263,21 @@ class Dnscope extends utils.Adapter {
                 auth: username && password ? { username, password } : undefined,
             };
 
+            this.log.debug(`IPv6 update request URL: ${url}`);
+            this.log.debug(`IPv6 request auth enabled: ${config.auth ? 'yes' : 'no'}, timeout: ${config.timeout}`);
             const response = await axios(config);
             this.log.debug(`DNS Update State for IPv6: ${JSON.stringify(response.data)}`);
             return 'OK';
         } catch (error) {
-            this.log.error(`Error in the request for IPv6: ${error.message}`);
+            if (axios.isAxiosError(error)) {
+                this.log.error(`Error in the request for IPv6: ${error.message}`);
+                this.log.debug(`IPv6 response status: ${error.response?.status ?? 'unknown'}`);
+                this.log.debug(`IPv6 response status text: ${error.response?.statusText ?? 'unknown'}`);
+                this.log.debug(`IPv6 response body: ${JSON.stringify(error.response?.data ?? 'no response body')}`);
+                this.log.debug(`IPv6 response headers: ${JSON.stringify(error.response?.headers ?? 'no response headers')}`);
+            } else {
+                this.log.error(`Error in the request for IPv6: ${String(error)}`);
+            }
             return 'not OK';
         }
     }

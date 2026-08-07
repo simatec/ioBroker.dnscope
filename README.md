@@ -42,6 +42,19 @@ The following DynDNS providers are currently supported:
 
 When selecting `Custom`, it is possible to specify a direct update URL in order to integrate any provider that supports this.
 
+The following placeholders can be used in the custom URL and will be replaced with the current IP address at runtime:
+
+| Placeholder | Description |
+|---|---|
+| `{{ipv4}}` | Current public IPv4 address |
+| `{{ipv6}}` | Current public IPv6 address |
+| `{{ip}}` | Current IP address (IPv4 in the IPv4 update, IPv6 in the IPv6 update) |
+
+**Example:**
+```
+https://dynupdate.example.com/update?hostname=myhome.example.com&myip={{ipv4}}&token=abc123
+```
+
 ---
 
 ## Adapter configuration
@@ -56,6 +69,17 @@ If you have several domains that are to be updated, you need one instance per do
 ---
 <!-- ### **WORK IN PROGRESS** -->
 ## Changelog
+### 0.3.2 (2026-05-04)
+* (HJS72) Add detailed debug diagnostics for failed update requests (HTTP status, body, and headers)
+* (HJS72) Ship compiled build output with the latest logging changes
+
+### 0.3.1 (2026-05-04)
+* (HJS72) Fix HTTP 400 error when IP address could not be determined (skip update instead)
+* (HJS72) Add debug log output for the full update request URL
+
+### 0.3.0 (2026-05-04)
+* (HJS72) Add IP placeholder support for custom update URL (`{{ipv4}}`, `{{ipv6}}`, `{{ip}}`)
+
 ### 0.2.9 (2026-04-26)
 * (simatec) dependencies updated
 * (simatec) Source code cleaned up
