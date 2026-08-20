@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "dnscope",
-    "version": "0.2.9",
+    "version": "0.3.0",
     "news": {
       "0.3.2": {
         "en": "Add detailed HTTP error diagnostics in debug logs and include compiled build output",
@@ -18,16 +18,16 @@
       },
       "0.3.1": {
         "en": "Fix status 400 error when IP is unavailable; add debug log for update URL",
-        "de": "Fehler 400 behoben wenn IP nicht verf\u00fcgbar; Debug-Log f\u00fcr Update-URL hinzugef\u00fcgt",
-        "ru": "\u0418\u0441\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u0430 \u043e\u0448\u0438\u0431\u043a\u0430 400 \u043f\u0440\u0438 \u043d\u0435\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u043e\u0441\u0442\u0438 IP; \u0434\u043e\u0431\u0430\u0432\u043b\u0435\u043d Debug-\u041b\u043e\u0433 \u0434\u043b\u044f URL \u043e\u0431\u043d\u043e\u0432\u043b\u0435\u043d\u0438\u044f",
-        "pt": "Corrigido erro 400 quando IP indispon\u00edvel; log de debug para URL de atualiza\u00e7\u00e3o",
+        "de": "Fehler 400 behoben wenn IP nicht verfügbar; Debug-Log für Update-URL hinzugefügt",
+        "ru": "Исправлена ошибка 400 при недоступности IP; добавлен Debug-Лог для URL обновления",
+        "pt": "Corrigido erro 400 quando IP indisponível; log de debug para URL de atualização",
         "nl": "Fout 400 opgelost bij onbeschikbaar IP; debug-log voor update-URL toegevoegd",
-        "fr": "Correction erreur 400 quand IP indisponible; log de d\u00e9bogage pour l'URL de mise \u00e0 jour",
+        "fr": "Correction erreur 400 quand IP indisponible; log de débogage pour l'URL de mise à jour",
         "it": "Corretto errore 400 quando IP non disponibile; aggiunto log di debug per URL aggiornamento",
-        "es": "Corregido error 400 cuando IP no disponible; log de depuraci\u00f3n para URL de actualizaci\u00f3n",
-        "pl": "Naprawiono b\u0142\u0105d 400 gdy IP niedost\u0119pne; dodano log debugowania dla URL aktualizacji",
-        "uk": "\u0412\u0438\u043f\u0440\u0430\u0432\u043b\u0435\u043d\u043e \u043f\u043e\u043c\u0438\u043b\u043a\u0443 400 \u043f\u0440\u0438 \u043d\u0435\u0434\u043e\u0441\u0442\u0443\u043f\u043d\u043e\u0441\u0442\u0456 IP; \u0434\u043e\u0434\u0430\u043d\u043e debug-\u043b\u043e\u0433 \u0434\u043b\u044f URL \u043e\u043d\u043e\u0432\u043b\u0435\u043d\u043d\u044f",
-        "zh-cn": "\u4fee\u590d\u4e86IP\u4e0d\u53ef\u7528\u65f6\u72b4\u9519\u8bef400\uff1b\u6dfb\u52a0\u4e86\u66f4\u65b0URL\u7684\u8c03\u8bd5\u65e5\u5fd7"
+        "es": "Corregido error 400 cuando IP no disponible; log de depuración para URL de actualización",
+        "pl": "Naprawiono błąd 400 gdy IP niedostępne; dodano log debugowania dla URL aktualizacji",
+        "uk": "Виправлено помилку 400 при недоступності IP; додано debug-лог для URL оновлення",
+        "zh-cn": "修复了IP不可用时犴错误400；添加了更新URL的调试日志"
       },
       "0.3.0": {
         "en": "Add IP placeholder support for custom update URL",
@@ -93,45 +93,6 @@
         "pl": "zaktualizowane zależności\nNapraw publikację npm",
         "uk": "оновлені залежності\nВиправлення npm опублікування",
         "zh-cn": "更新依赖关系\n修复 npm 发布"
-      },
-      "0.2.5": {
-        "en": "Dependencies updated",
-        "de": "Ausgaben aktualisiert",
-        "ru": "Обновленные зависимости",
-        "pt": "Dependências atualizadas",
-        "nl": "Afhankelijkheden bijgewerkt",
-        "fr": "Dépendances actualisées",
-        "it": "Dipendenze aggiornate",
-        "es": "Actualización de las dependencias",
-        "pl": "Aktualizacja zależności",
-        "uk": "Залежність оновлено",
-        "zh-cn": "更新的依赖关系"
-      },
-      "0.2.4": {
-        "en": "dependencies updated\nReady for NodeJS 24.x",
-        "de": "aktualisierte abhängigkeiten\nBereit für NodeJS 24.x",
-        "ru": "обновленные зависимости\nГотовность к NodeJS 24.x",
-        "pt": "dependências atualizadas\nPronto para NodeJS 24.x",
-        "nl": "afhankelijkheden bijgewerkt\nKlaar voor NodeJS 24.x",
-        "fr": "dépendances mises à jour\nPrêt pour NodeJS 24.x",
-        "it": "dipendenze aggiornate\nPronti per NodeJS 24.x",
-        "es": "dependencias actualizadas\nListo para NodeJS 24.x",
-        "pl": "zaktualizowane zależności\nGotowy do NodeJS 24.x",
-        "uk": "оновлені залежності\nГотовий для NodeJS 24.x",
-        "zh-cn": "更新依赖关系\n准备进入节点JS 24.x"
-      },
-      "0.2.3": {
-        "en": "Fix Config\nFix Instance terminate",
-        "de": "Fehlerbehebung\nRechtssache",
-        "ru": "Исправить Config\nFix Instance прекращается",
-        "pt": "Configação de Fixação\nEncerramento da instância",
-        "nl": "Configureren\nFix Instance beëindigd",
-        "fr": "Correction de la configuration\nArrêt de l'instance",
-        "it": "Fissare la configurazione\nRisolvere la risoluzione",
-        "es": "Fije Config\nTerminar la instalación",
-        "pl": "Popraw konfigurację\nPoprawiona Sąd kończy",
-        "uk": "Налаштування\nВиправлення припинення дії",
-        "zh-cn": "修补配置\n实例终止"
       }
     },
     "titleLang": {
