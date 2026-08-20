@@ -1,7 +1,7 @@
 {
   "common": {
     "name": "dnscope",
-    "version": "0.3.2",
+    "version": "0.2.9",
     "news": {
       "0.3.2": {
         "en": "Add detailed HTTP error diagnostics in debug logs and include compiled build output",
@@ -186,7 +186,7 @@
     "schedule": "*/10 * * * *",
     "allowInit": true,
     "type": "network",
-    "compact": true,
+    "compact": false,
     "connectionType": "cloud",
     "dataSource": "poll",
     "adminUI": {

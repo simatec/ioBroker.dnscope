@@ -1,6 +1,6 @@
 {
   "name": "iobroker.dnscope",
-  "version": "0.3.2",
+  "version": "0.2.9",
   "description": "DNScope is a Dynamic DNS Updater",
   "author": {
     "name": "simatec",
@@ -27,25 +27,25 @@
     "url": "https://github.com/simatec/ioBroker.dnscope.git"
   },
   "engines": {
-    "node": ">= 20"
+    "node": ">= 22"
   },
   "dependencies": {
-    "@iobroker/adapter-core": "^3.3.2",
-    "axios": "^1.15.2"
+    "@iobroker/adapter-core": "^3.4.3",
+    "axios": "^1.19.0"
   },
   "devDependencies": {
     "@alcalzone/release-script": "^5.2.1",
     "@alcalzone/release-script-plugin-iobroker": "^5.2.0",
-    "@alcalzone/release-script-plugin-license": "^5.2.0",
+    "@alcalzone/release-script-plugin-license": "^5.2.2",
     "@alcalzone/release-script-plugin-manual-review": "^5.2.0",
     "@iobroker/adapter-dev": "^1.5.0",
     "@iobroker/eslint-config": "^2.3.4",
     "@iobroker/testing": "^5.3.0",
-    "@tsconfig/node22": "^22.0.5",
-    "@types/node": "^25.9.1",
+    "@tsconfig/node20": "^20.1.10",
+    "@types/node": "^26.2.0",
     "rimraf": "^6.1.3",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "~6.0.3"
   },
   "main": "build/main.js",
   "files": [
@@ -64,7 +64,8 @@
     "!.idea",
     "!test",
     "io-package.json",
-    "LICENSE"
+    "LICENSE",
+    "!CHANGELOG_OLD.md"
   ],
   "scripts": {
     "prebuild": "rimraf build",

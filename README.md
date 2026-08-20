@@ -69,15 +69,15 @@ If you have several domains that are to be updated, you need one instance per do
 ---
 <!-- ### **WORK IN PROGRESS** -->
 ## Changelog
-### 0.3.2 (2026-05-04)
+
+### **WORK IN PROGRESS**
+* (simatec) Adapter requires node.js >= 22 now
+* (simatec) dependencies updated
+* (simatec) Source code cleaned up
 * (HJS72) Add detailed debug diagnostics for failed update requests (HTTP status, body, and headers)
 * (HJS72) Ship compiled build output with the latest logging changes
-
-### 0.3.1 (2026-05-04)
 * (HJS72) Fix HTTP 400 error when IP address could not be determined (skip update instead)
 * (HJS72) Add debug log output for the full update request URL
-
-### 0.3.0 (2026-05-04)
 * (HJS72) Add IP placeholder support for custom update URL (`{{ipv4}}`, `{{ipv6}}`, `{{ip}}`)
 
 ### 0.2.9 (2026-04-26)
