@@ -170,7 +170,9 @@ class Dnscope extends utils.Adapter {
     let username = null;
     let password = null;
     const domain = this.config.domain;
-    this.log.debug(`IPv4 update provider: ${this.config.dyndnsServive}, domain: ${domain}, current IP: ${currentIPv4}`);
+    this.log.debug(
+      `IPv4 update provider: ${this.config.dyndnsServive}, domain: ${domain}, current IP: ${currentIPv4}`
+    );
     switch (this.config.dyndnsServive) {
       case "duckdns":
         url = `https://www.duckdns.org/update?domains=${domain.split(".")[0]}&token=${this.config.duckdnsToken}&ip=${currentIPv4}`;
@@ -208,7 +210,9 @@ class Dnscope extends utils.Adapter {
         this.log.debug(`IPv4 response status: ${(_b = (_a = error.response) == null ? void 0 : _a.status) != null ? _b : "unknown"}`);
         this.log.debug(`IPv4 response status text: ${(_d = (_c = error.response) == null ? void 0 : _c.statusText) != null ? _d : "unknown"}`);
         this.log.debug(`IPv4 response body: ${JSON.stringify((_f = (_e = error.response) == null ? void 0 : _e.data) != null ? _f : "no response body")}`);
-        this.log.debug(`IPv4 response headers: ${JSON.stringify((_h = (_g = error.response) == null ? void 0 : _g.headers) != null ? _h : "no response headers")}`);
+        this.log.debug(
+          `IPv4 response headers: ${JSON.stringify((_h = (_g = error.response) == null ? void 0 : _g.headers) != null ? _h : "no response headers")}`
+        );
       } else {
         this.log.error(`Error in the request for IPv4: ${String(error)}`);
       }
@@ -225,7 +229,9 @@ class Dnscope extends utils.Adapter {
     let username = null;
     let password = null;
     const domain = this.config.domain;
-    this.log.debug(`IPv6 update provider: ${this.config.dyndnsServive}, domain: ${domain}, current IP: ${currentIPv6}`);
+    this.log.debug(
+      `IPv6 update provider: ${this.config.dyndnsServive}, domain: ${domain}, current IP: ${currentIPv6}`
+    );
     switch (this.config.dyndnsServive) {
       case "duckdns":
         url = `https://www.duckdns.org/update?domains=${domain.split(".")[0]}&token=${this.config.duckdnsToken}&ipv6=${currentIPv6}`;
@@ -263,7 +269,9 @@ class Dnscope extends utils.Adapter {
         this.log.debug(`IPv6 response status: ${(_b = (_a = error.response) == null ? void 0 : _a.status) != null ? _b : "unknown"}`);
         this.log.debug(`IPv6 response status text: ${(_d = (_c = error.response) == null ? void 0 : _c.statusText) != null ? _d : "unknown"}`);
         this.log.debug(`IPv6 response body: ${JSON.stringify((_f = (_e = error.response) == null ? void 0 : _e.data) != null ? _f : "no response body")}`);
-        this.log.debug(`IPv6 response headers: ${JSON.stringify((_h = (_g = error.response) == null ? void 0 : _g.headers) != null ? _h : "no response headers")}`);
+        this.log.debug(
+          `IPv6 response headers: ${JSON.stringify((_h = (_g = error.response) == null ? void 0 : _g.headers) != null ? _h : "no response headers")}`
+        );
       } else {
         this.log.error(`Error in the request for IPv6: ${String(error)}`);
       }

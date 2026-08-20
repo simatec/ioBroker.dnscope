@@ -170,7 +170,9 @@ class Dnscope extends utils.Adapter {
         let password = null as null | string;
         const domain: string = this.config.domain;
 
-        this.log.debug(`IPv4 update provider: ${this.config.dyndnsServive}, domain: ${domain}, current IP: ${currentIPv4}`);
+        this.log.debug(
+            `IPv4 update provider: ${this.config.dyndnsServive}, domain: ${domain}, current IP: ${currentIPv4}`,
+        );
 
         switch (this.config.dyndnsServive) {
             case 'duckdns':
@@ -213,7 +215,9 @@ class Dnscope extends utils.Adapter {
                 this.log.debug(`IPv4 response status: ${error.response?.status ?? 'unknown'}`);
                 this.log.debug(`IPv4 response status text: ${error.response?.statusText ?? 'unknown'}`);
                 this.log.debug(`IPv4 response body: ${JSON.stringify(error.response?.data ?? 'no response body')}`);
-                this.log.debug(`IPv4 response headers: ${JSON.stringify(error.response?.headers ?? 'no response headers')}`);
+                this.log.debug(
+                    `IPv4 response headers: ${JSON.stringify(error.response?.headers ?? 'no response headers')}`,
+                );
             } else {
                 this.log.error(`Error in the request for IPv4: ${String(error)}`);
             }
@@ -231,7 +235,9 @@ class Dnscope extends utils.Adapter {
         let password = null;
         const domain = this.config.domain;
 
-        this.log.debug(`IPv6 update provider: ${this.config.dyndnsServive}, domain: ${domain}, current IP: ${currentIPv6}`);
+        this.log.debug(
+            `IPv6 update provider: ${this.config.dyndnsServive}, domain: ${domain}, current IP: ${currentIPv6}`,
+        );
 
         switch (this.config.dyndnsServive) {
             case 'duckdns':
@@ -274,7 +280,9 @@ class Dnscope extends utils.Adapter {
                 this.log.debug(`IPv6 response status: ${error.response?.status ?? 'unknown'}`);
                 this.log.debug(`IPv6 response status text: ${error.response?.statusText ?? 'unknown'}`);
                 this.log.debug(`IPv6 response body: ${JSON.stringify(error.response?.data ?? 'no response body')}`);
-                this.log.debug(`IPv6 response headers: ${JSON.stringify(error.response?.headers ?? 'no response headers')}`);
+                this.log.debug(
+                    `IPv6 response headers: ${JSON.stringify(error.response?.headers ?? 'no response headers')}`,
+                );
             } else {
                 this.log.error(`Error in the request for IPv6: ${String(error)}`);
             }
